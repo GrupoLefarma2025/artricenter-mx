@@ -1,0 +1,242 @@
+---
+import Navigation from './Navigation.astro';
+import { NavItem } from '@/config/navigation';
+
+interface Props {
+  navItems: NavItem[];
+  currentPage: string;
+}
+
+const { navItems, currentPage } = Astro.props;
+---
+
+<!-- Logo Desktop - NO STICKY (se desplaza con el contenido) -->
+<div class="hidden lg:flex justify-center items-center py-4 bg-white border-b border-gray-100">
+  <a href="/" class="flex-shrink-0" aria-label="Ir a inicio">
+    <img src="/assets/images/brand/logo.jpeg" alt="Artricenter" class="h-24 w-auto" />
+  </a>
+</div>
+
+<!-- Navegación Desktop - STICKY (se ancla en top 0) -->
+<header class="hidden lg:block bg-white border-b border-gray-200 shadow-md" style="position: sticky; top: 0; z-index: 9999; -webkit-position: sticky; -webkit-top: 0;">
+  <div class="max-w-7xl mx-auto px-4 w-full">
+    <div class="flex items-center justify-center h-14 gap-4">
+      <!-- Botón Home -->
+      <a
+        href="/"
+        class="flex-shrink-0 p-2 rounded-lg text-blue-600 hover:bg-blue-50 hover:text-blue-700 transition-all duration-200 hover:scale-105 active:scale-95"
+        aria-label="Ir a inicio"
+      >
+        <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
+        </svg>
+      </a>
+
+      <!-- Navegación desktop centrada -->
+      <Navigation items={navItems} currentPage={currentPage} />
+    </div>
+  </div>
+</header>
+
+<!-- Header Mobile - STICKY completo -->
+<header class="lg:hidden bg-white border-b border-gray-200 shadow-md" style="position: sticky; top: 0; z-index: 9999; -webkit-position: sticky; -webkit-top: 0;">
+  <div class="max-w-7xl mx-auto px-4">
+    <!-- Mobile Header -->
+    <div class="flex items-center justify-between h-14">
+      <!-- Logo oculto en móvil -->
+      <a href="/" class="hidden" aria-label="Ir a inicio">
+        <img src="/assets/images/brand/logo.jpeg" alt="Artricenter" class="h-12 w-auto" />
+      </a>
+
+      <!-- Menú hamburguesa - izquierda -->
+      <button
+        type="button"
+        class="inline-flex items-center justify-center p-3 -ml-3 rounded-xl text-gray-700 hover:text-blue-600 hover:bg-blue-50 transition-all duration-200 active:scale-95"
+        aria-expanded="false"
+        data-mobile-toggle
+        aria-label="Abrir menú principal"
+      >
+        <svg class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" data-menu-icon>
+          <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+        </svg>
+        <svg class="h-7 w-7 hidden" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" data-close-icon>
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+
+      <!-- Espaciador para balance -->
+      <div class="flex-1"></div>
+
+      <!-- Logo centrado -->
+      <img src="/assets/images/brand/logo.jpeg" alt="Artricenter" class="h-10 w-auto bg-white rounded-lg p-1" />
+
+      <!-- Espaciador para balance -->
+      <div class="w-12"></div>
+    </div>
+  </div>
+
+  <!-- Mobile Navigation Menu - Full screen overlay -->
+  <div
+    class="fixed inset-0 z-[100] hidden"
+    data-mobile-overlay
+    aria-hidden="true"
+  >
+    <!-- Backdrop -->
+    <div
+      class="absolute inset-0 bg-black/60 backdrop-blur-sm transition-opacity duration-300 opacity-0"
+      data-mobile-backdrop
+    ></div>
+
+    <!-- Panel -->
+    <div
+      class="absolute right-0 top-0 bottom-0 w-full max-w-md bg-white shadow-2xl transform transition-transform duration-300 ease-out translate-x-full"
+      data-mobile-panel
+      style="z-index: 20;"
+    >
+      <!-- Mobile Menu Header -->
+      <div class="sticky top-0 z-10 flex items-center justify-between px-4 py-4 border-b-2 border-blue-200 bg-gradient-to-r from-blue-600 to-blue-700">
+        <div class="flex items-center gap-3">
+          <img src="/assets/images/brand/logo.jpeg" alt="Artricenter" class="h-10 w-auto bg-white rounded-lg p-1" />
+          <span class="text-xl font-bold text-white">Menú Principal</span>
+        </div>
+        <button
+          type="button"
+          class="inline-flex items-center justify-center p-2 rounded-lg text-white hover:bg-white/20 transition-all duration-200"
+          data-mobile-close
+          aria-label="Cerrar menú"
+        >
+          <svg class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+
+      <!-- Scrollable Menu Content -->
+      <nav class="overflow-y-auto h-[calc(100%-72px)] px-4 py-6 space-y-3" aria-label="Navegación móvil">
+        {navItems.map(item => (
+          <div class="mobile-menu-item">
+            <button
+              class:list={[
+                "w-full flex items-center justify-between px-5 py-4 text-base font-bold rounded-2xl transition-all duration-200 active:scale-[0.98]",
+                { "bg-blue-600 text-white shadow-xl": item.page === currentPage },
+                { "bg-gradient-to-r from-gray-50 to-gray-100 text-gray-900 hover:from-blue-50 hover:to-blue-100": item.page !== currentPage }
+              ]}
+              data-menu-trigger={item.page}
+              aria-expanded="false"
+            >
+              <span>{item.label}</span>
+              {item.children && item.children.length > 0 && (
+                <svg class="h-6 w-6 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                </svg>
+              )}
+            </button>
+
+            {item.children && item.children.length > 0 && (
+              <div class="hidden ml-4 mt-2 space-y-2 pl-4 border-l-4 border-blue-300" data-submenu={item.page}>
+                {item.children.map(child => {
+                  const isExternal = child.page.startsWith('http://') || child.page.startsWith('https://');
+                  const fullHref = isExternal ? child.page : child.page + (child.hash || '');
+                  const childIsActive = !isExternal && child.page === currentPage;
+                  return (
+                    <a
+                      href={fullHref}
+                      class:list={[
+                        "block px-5 py-3 text-sm font-semibold rounded-xl transition-all duration-200 active:scale-[0.98]",
+                        { "bg-blue-100 text-blue-700 border-2 border-blue-300": childIsActive },
+                        { "bg-white text-gray-700 hover:bg-blue-50 hover:text-blue-600 border-2 border-gray-200": !childIsActive }
+                      ]}
+                      target={isExternal ? '_blank' : undefined}
+                      rel={isExternal ? 'noopener noreferrer' : undefined}
+                    >
+                      <div class="flex items-center gap-2">
+                        <span class="flex-1">{child.label}</span>
+                        {isExternal && (
+                          <svg class="h-4 w-4 text-blue-500" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                          </svg>
+                        )}
+                      </div>
+                    </a>
+                  );
+                })}
+              </div>
+            )}
+          </div>
+        ))}
+      </nav>
+    </div>
+  </div>
+</header>
+
+<script>
+  // Mobile menu functionality
+  const mobileToggle = document.querySelector('[data-mobile-toggle]');
+  const mobileClose = document.querySelector('[data-mobile-close]');
+  const mobileOverlay = document.querySelector('[data-mobile-overlay]');
+  const mobileBackdrop = document.querySelector('[data-mobile-backdrop]');
+  const mobilePanel = document.querySelector('[data-mobile-panel]');
+  const menuIcon = document.querySelector('[data-menu-icon]');
+  const closeIcon = document.querySelector('[data-close-icon]');
+  const menuTriggers = document.querySelectorAll('[data-menu-trigger]');
+
+  function openMenu() {
+    mobileOverlay?.classList.remove('hidden');
+    mobilePanel?.classList.remove('translate-x-full');
+    menuIcon?.classList.add('hidden');
+    closeIcon?.classList.remove('hidden');
+    mobileToggle?.setAttribute('aria-expanded', 'true');
+    document.body.style.overflow = 'hidden';
+
+    // Trigger animations
+    setTimeout(() => {
+      mobileBackdrop?.classList.remove('opacity-0');
+    }, 10);
+  }
+
+  function closeMenu() {
+    mobileBackdrop?.classList.add('opacity-0');
+    mobilePanel?.classList.add('translate-x-full');
+    menuIcon?.classList.remove('hidden');
+    closeIcon?.classList.add('hidden');
+    mobileToggle?.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = '';
+
+    setTimeout(() => {
+      mobileOverlay?.classList.add('hidden');
+    }, 300);
+  }
+
+  mobileToggle?.addEventListener('click', openMenu);
+  mobileClose?.addEventListener('click', closeMenu);
+  mobileBackdrop?.addEventListener('click', closeMenu);
+
+  // Submenu toggles
+  menuTriggers.forEach(trigger => {
+    trigger?.addEventListener('click', () => {
+      const page = trigger?.getAttribute('data-menu-trigger');
+      const submenu = document.querySelector(`[data-submenu="${page}"]`);
+      const icon = trigger?.querySelector('svg:last-child');
+
+      if (submenu?.classList.contains('hidden')) {
+        submenu?.classList.remove('hidden');
+        if (icon) icon?.classList.add('rotate-180');
+        trigger?.setAttribute('aria-expanded', 'true');
+      } else {
+        submenu?.classList.add('hidden');
+        if (icon) icon?.classList.remove('rotate-180');
+        trigger?.setAttribute('aria-expanded', 'false');
+      }
+    });
+  });
+
+  // Close menu on link click
+  document.querySelectorAll('[data-mobile-panel] a').forEach(link => {
+    link.addEventListener('click', closeMenu);
+  });
+
+  // Close menu on escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeMenu();
+  });
+</script>

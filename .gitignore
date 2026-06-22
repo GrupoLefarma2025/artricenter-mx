@@ -1,0 +1,27 @@
+*.Zone.Identifier
+.vercel
+node_modules/
+.opencode/
+index-redirect.html
+index.php
+temp-index.html
+
+# Secrets and environment
+.env
+.env.local
+.env.*.local
+
+# Build output
+dist/
+.astro/
+
+# Editor and OS files
+.DS_Store
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Logs
+*.log
+npm-debug.log*

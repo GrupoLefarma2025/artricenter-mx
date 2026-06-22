@@ -1,0 +1,1373 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import ContentSection from '@/components/ui/ContentSection.astro';
+import { navConfig } from '@/config/navigation';
+---
+
+<Layout
+  title="Artricenter | Clínica de Reumatología en Ciudad de México — Especialistas en Artrosis, Artritis y Fibromialgia"
+  description="Clínica reumatológica en CDMX con más de 15 años de experiencia. Diagnóstico y tratamiento integral de artrosis, artritis reumatoide, fibromialgia y enfermedades reumáticas. Agenda tu valoración hoy."
+  currentPage="/"
+  jsonLd={{
+    "@context": "https://schema.org",
+    "@type": "MedicalClinic",
+    "name": "Artricenter",
+    "url": "https://artricenter.com.mx",
+    "description": "Clínica reumatológica en Ciudad de México con especialistas en artrosis, artritis reumatoide y fibromialgia.",
+    "founder": {
+      "@type": "Person",
+      "name": "Dr. Alexander Fernández Portello",
+      "jobTitle": "Director Médico",
+      "knowsAbout": "Rheumatology"
+    },
+    "employee": [
+      {
+        "@type": "Person",
+        "name": "Dra. Cira Cibelis Calzadilla Columbie",
+        "jobTitle": "Director Médico de Artricenter Atizapán",
+        "knowsAbout": "Rheumatology"
+      },
+      {
+        "@type": "Person",
+        "name": "Dr. Justo Méndez",
+        "jobTitle": "Director Médico de Artricenter Viaducto",
+        "knowsAbout": "Rheumatology"
+      }
+    ]
+  }}
+>
+  <div class="max-w-7xl mx-auto px-4 py-12">
+    <!-- Carousel de banners -->
+    <div class="max-w-5xl mx-auto mb-16 rounded-lg shadow-lg overflow-hidden relative" id="hero-carousel">
+      <div class="carousel-track" id="carousel-track">
+        <div class="carousel-slide">
+          <img src="/assets/images/hero/banner-1.png" alt="Artricenter - Especialistas en enfermedades reumáticas" />
+        </div>
+        <div class="carousel-slide">
+          <img src="/assets/images/hero/banner-2.jpeg" alt="Artricenter - Tratamiento integral" />
+        </div>
+        <div class="carousel-slide">
+          <img src="/assets/images/hero/joints-banner.avif" alt="Artricenter - Cuidado de articulaciones" />
+        </div>
+      </div>
+      <button class="carousel-btn carousel-prev" aria-label="Anterior">&#10094;</button>
+      <button class="carousel-btn carousel-next" aria-label="Siguiente">&#10095;</button>
+      <div class="carousel-dots" id="carousel-dots">
+        <span class="carousel-dot active" data-index="0"></span>
+        <span class="carousel-dot" data-index="1"></span>
+        <span class="carousel-dot" data-index="2"></span>
+      </div>
+    </div>
+
+    <!-- Sección introductoria con texto -->
+    <section id="artricenter" class="mb-16 scroll-mt-20">
+      <div class="text-center mb-8">
+        <h1 class="sr-only">Artricenter — Clínica de Reumatología en Ciudad de México</h1>
+        <h2 class="text-5xl font-bold text-blue-600 mb-8">Artricenter</h2>
+        <div class="flex items-center justify-center gap-6">
+          <div class="h-1 w-40 rounded-full" style="background: linear-gradient(to right, transparent, rgb(0, 83, 161))"></div>
+          <div class="flex gap-2">
+            <div class="w-3 h-3 rounded-full animate-pulse" style="background-color: rgb(0, 83, 161)"></div>
+            <div class="w-2 h-2 rounded-full" style="background-color: rgb(83, 175, 49)"></div>
+            <div class="w-2 h-2 rounded-full" style="background-color: rgb(242, 144, 88)"></div>
+          </div>
+          <div class="h-1 w-40 rounded-full" style="background: linear-gradient(to left, transparent, rgb(242, 144, 88))"></div>
+        </div>
+      </div>
+
+      <div class="max-w-4xl mx-auto space-y-6 text-justify text-lg text-gray-700 leading-relaxed px-4">
+        <p>
+          En Artricenter somos especialistas en el diagnóstico y tratamiento integral de enfermedades reumáticas.
+        </p>
+
+        <p>
+          Entendemos que el dolor, la inflamación y la rigidez no solo afectan tus articulaciones, sino también tu rutina diaria, tu independencia y tu bienestar emocional.
+        </p>
+
+        <p>
+          Nuestro enfoque médico está basado en una valoración clínica detallada, diagnóstico preciso y planes de tratamiento personalizados, diseñados para aliviar el dolor, mejorar la función articular y prevenir el avance de la enfermedad.
+        </p>
+
+        <p>
+          Trabajamos con un modelo de atención médica centrada en el paciente, donde cada caso se estudia de manera individual para ofrecer soluciones seguras, efectivas y respaldadas por evidencia médica.
+        </p>
+
+        <p>
+          Atendemos padecimientos como osteoartrosis, artritis reumatoide, fibromialgia y otras condiciones que afectan tu movilidad y calidad de vida.
+        </p>
+
+        <p>
+          Nuestro compromiso es acompañarte en cada etapa de tu recuperación para que vuelvas a moverte con confianza y seguridad.
+        </p>
+      </div>
+
+      <!-- Botón CTA -->
+      <div class="text-center mt-12">
+        <a
+          href="/tratamiento-medico-integral"
+          class="inline-block px-8 py-4 text-white font-semibold text-lg rounded-lg shadow-lg hover:shadow-xl hover:-translate-y-1 active:translate-y-0 active:shadow-md transition-all duration-300 ease-in-out transform"
+          style="background-color: rgb(0, 83, 161)"
+          onmouseenter="this.style.backgroundColor='rgb(0, 70, 135)'"
+          onmouseleave="this.style.backgroundColor='rgb(0, 83, 161)'"
+        >
+          Tratamiento Médico Integral
+        </a>
+      </div>
+
+      <!-- Separador final estilizado -->
+      <div class="flex items-center justify-center gap-6 mt-16 mb-12">
+        <div class="h-1 w-40 bg-gradient-to-r from-transparent via-blue-500 to-blue-600 rounded-full"></div>
+        <div class="flex gap-2">
+          <div class="w-3 h-3 bg-blue-600 rounded-full animate-pulse"></div>
+          <div class="w-2 h-2 bg-blue-500 rounded-full"></div>
+        </div>
+        <div class="h-1 w-40 bg-gradient-to-l from-transparent via-blue-500 to-blue-600 rounded-full"></div>
+      </div>
+    </section>
+
+    <!-- Sección Nuestra Historia — Línea del Tiempo Interactiva -->
+    <section id="nuestra-historia" class="mb-16 scroll-mt-20">
+      <div class="text-center mb-8">
+        <div class="timeline-section-header">
+          <div class="timeline-header-line">
+            <span class="timeline-header-arrow">▶</span>
+            <span class="timeline-header-dots"></span>
+          </div>
+          <h2 class="text-5xl font-bold text-blue-600">Línea de tiempo de Artricenter</h2>
+          <div class="timeline-header-line">
+            <span class="timeline-header-dots"></span>
+            <span class="timeline-header-arrow">◀</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Texto introductorio de historia -->
+      <div class="max-w-4xl mx-auto space-y-6 text-justify text-lg text-gray-700 leading-relaxed px-4 mb-12">
+        <p>
+          Iniciamos actividades en el año 2006.
+        </p>
+
+        <p>
+          Debido a nuestro éxito, creamos el 2 de septiembre del 2014, una nueva sucursal en Atizapán, Estado de México.
+        </p>
+
+        <p>
+          En 2020 aperturamos nuestra sucursal en Viaducto, extendiendo así la cobertura de Atención Integral para Pacientes con Enfermedades Reumáticas (PAIPER).
+        </p>
+      </div>
+
+      <!-- Timeline Container -->
+      <div class="timeline-container relative max-w-6xl mx-auto px-4 py-8">
+        <!-- Línea central vertical (fondo) -->
+        <div class="timeline-line-bg" aria-hidden="true"></div>
+        <!-- Línea central vertical (progreso) -->
+        <div class="timeline-line-progress" id="timeline-progress" aria-hidden="true"></div>
+
+        <!-- Hito 1: 2006 - La Raza -->
+        <div class="timeline-item timeline-left timeline-item--1" data-side="left">
+          <div class="timeline-content">
+            <div class="timeline-card">
+              <span class="timeline-year">2006</span>
+              <h3 class="timeline-title">La Raza</h3>
+              <p class="timeline-text">
+                Iniciamos actividades.
+              </p>
+            </div>
+          </div>
+          <div class="timeline-circle">
+            <img src="/assets/images/branches/la-raza.png" alt="Artricenter La Raza — Inicio de actividades en 2006" loading="lazy" />
+          </div>
+          <div class="timeline-empty"></div>
+        </div>
+
+        <!-- Conector 1 → 2 -->
+        <div class="timeline-connector timeline-connector--right" aria-hidden="true">
+          <svg viewBox="0 0 600 50" preserveAspectRatio="none">
+            <path d="M230,5 Q300,45 370,45" fill="none" stroke="currentColor" stroke-width="2.5" stroke-dasharray="6,4" vector-effect="non-scaling-stroke"/>
+            <polygon points="370,45 363,40 363,50" fill="currentColor"/>
+          </svg>
+        </div>
+
+        <!-- Hito 2: 2015 - Atizapán -->
+        <div class="timeline-item timeline-right timeline-item--2" data-side="right">
+          <div class="timeline-empty"></div>
+          <div class="timeline-circle">
+            <img src="/assets/images/branches/atizapan.png" alt="Artricenter Atizapán — Inaugurada en 2015" loading="lazy" />
+          </div>
+          <div class="timeline-content">
+            <div class="timeline-card">
+              <span class="timeline-year">2015</span>
+              <h3 class="timeline-title">Atizapán</h3>
+              <p class="timeline-text">
+                Gracias al éxito obtenido en nuestra sucursal la raza creamos una nueva sucursal en Atizapán, Estado de México.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Conector 2 → 3 -->
+        <div class="timeline-connector timeline-connector--left" aria-hidden="true">
+          <svg viewBox="0 0 600 50" preserveAspectRatio="none">
+            <path d="M370,5 Q300,45 230,45" fill="none" stroke="currentColor" stroke-width="2.5" stroke-dasharray="6,4" vector-effect="non-scaling-stroke"/>
+            <polygon points="230,45 237,40 237,50" fill="currentColor"/>
+          </svg>
+        </div>
+
+        <!-- Hito 3: 2020 - Viaducto -->
+        <div class="timeline-item timeline-left timeline-item--3" data-side="left">
+          <div class="timeline-content">
+            <div class="timeline-card">
+              <span class="timeline-year">2020</span>
+              <h3 class="timeline-title">Viaducto</h3>
+              <p class="timeline-text">
+                Aperturamos nuestra sucursal en Viaducto, extendiendo así la cobertura de Atención Integral para Pacientes con Enfermedades Reumáticas (PAIPER).
+              </p>
+            </div>
+          </div>
+          <div class="timeline-circle">
+            <img src="/assets/images/branches/viaducto.png" alt="Artricenter Viaducto — Apertura en 2020" loading="lazy" />
+          </div>
+          <div class="timeline-empty"></div>
+        </div>
+
+        <!-- Conector 3 → 4 -->
+        <div class="timeline-connector timeline-connector--right" aria-hidden="true">
+          <svg viewBox="0 0 600 50" preserveAspectRatio="none">
+            <path d="M230,5 Q300,45 370,45" fill="none" stroke="currentColor" stroke-width="2.5" stroke-dasharray="6,4" vector-effect="non-scaling-stroke"/>
+            <polygon points="370,45 363,40 363,50" fill="currentColor"/>
+          </svg>
+        </div>
+
+        <!-- Hito 4: Actualidad -->
+        <div class="timeline-item timeline-right timeline-item--4" data-side="right">
+          <div class="timeline-empty"></div>
+          <div class="timeline-circle timeline-circle--current">
+            <svg class="w-1/2 h-1/2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/>
+            </svg>
+          </div>
+          <div class="timeline-content">
+            <div class="timeline-card timeline-card--current">
+              <span class="timeline-year">Actualidad</span>
+              <h3 class="timeline-title">Actualidad</h3>
+              <!-- Tabla de porcentajes -->
+              <div class="timeline-stats">
+                <div class="timeline-stat-row">
+                  <span class="timeline-stat-label">Osteoartrosis</span>
+                  <div class="timeline-stat-bar-bg">
+                    <div class="timeline-stat-bar" data-percent="91"></div>
+                  </div>
+                  <span class="timeline-stat-value">91%</span>
+                </div>
+                <div class="timeline-stat-row">
+                  <span class="timeline-stat-label">Artritis Reumatoide</span>
+                  <div class="timeline-stat-bar-bg">
+                    <div class="timeline-stat-bar" data-percent="67"></div>
+                  </div>
+                  <span class="timeline-stat-value">67%</span>
+                </div>
+                <div class="timeline-stat-row">
+                  <span class="timeline-stat-label">Fibromialgia</span>
+                  <div class="timeline-stat-bar-bg">
+                    <div class="timeline-stat-bar" data-percent="65"></div>
+                  </div>
+                  <span class="timeline-stat-value">65%</span>
+                </div>
+                <div class="timeline-stat-row">
+                  <span class="timeline-stat-label">Espondiloartritis</span>
+                  <div class="timeline-stat-bar-bg">
+                    <div class="timeline-stat-bar" data-percent="76"></div>
+                  </div>
+                  <span class="timeline-stat-value">76%</span>
+                </div>
+                <div class="timeline-stat-row">
+                  <span class="timeline-stat-label">Reumatismo de Partes Blandas</span>
+                  <div class="timeline-stat-bar-bg">
+                    <div class="timeline-stat-bar" data-percent="89"></div>
+                  </div>
+                  <span class="timeline-stat-value">89%</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Separador inferior -->
+      <div class="flex items-center justify-center gap-6 mt-12">
+        <div class="h-1 w-40 bg-gradient-to-r from-transparent via-blue-500 to-blue-600 rounded-full"></div>
+        <div class="flex gap-2">
+          <div class="w-3 h-3 bg-blue-600 rounded-full animate-pulse"></div>
+          <div class="w-2 h-2 bg-blue-500 rounded-full"></div>
+        </div>
+        <div class="h-1 w-40 bg-gradient-to-l from-transparent via-blue-500 to-blue-600 rounded-full"></div>
+      </div>
+    </section>
+
+    <!-- Sección Enfermedades que Tratamos -->
+    <section id="enfermedades" class="mb-16 scroll-mt-20">
+      <div class="text-center mb-8">
+        <h2 class="text-5xl font-bold text-blue-600 mb-8">Mejora de Dolor por Enfermedad Tratada</h2>
+        <div class="flex items-center justify-center gap-6">
+          <div class="h-1 w-40 rounded-full" style="background: linear-gradient(to right, transparent, rgb(0, 83, 161))"></div>
+          <div class="flex gap-2">
+            <div class="w-3 h-3 rounded-full animate-pulse" style="background-color: rgb(0, 83, 161)"></div>
+            <div class="w-2 h-2 rounded-full" style="background-color: rgb(83, 175, 49)"></div>
+            <div class="w-2 h-2 rounded-full" style="background-color: rgb(242, 144, 88)"></div>
+          </div>
+          <div class="h-1 w-40 rounded-full" style="background: linear-gradient(to left, transparent, rgb(242, 144, 88))"></div>
+        </div>
+      </div>
+
+      <p class="text-center text-lg text-gray-700 leading-relaxed max-w-3xl mx-auto mb-12 px-4">
+        El COLEGIO AMERICANO DE REUMATOLOGIA (ACR) considera un resultado positivo si se logra una mejora del 20 % en el recuento de articulaciones dolorosas o inflamadas.
+      </p>
+
+      <!-- Grid de enfermedades -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto px-4">
+
+        <!-- 1. Osteoartrosis — 91% -->
+        <div class="group bg-white rounded-2xl shadow-lg p-6 transition-all duration-300 hover:shadow-xl hover:-translate-y-1 border-l-4" style="border-left-color: rgb(0, 83, 161)">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0" style="background: linear-gradient(135deg, rgba(0, 83, 161, 0.15), rgba(0, 83, 161, 0.05))">
+              <svg class="w-6 h-6" style="color: rgb(0, 83, 161)" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+              </svg>
+            </div>
+            <h3 class="text-lg font-bold text-gray-900">Osteoartrosis</h3>
+          </div>
+          <p class="text-sm text-gray-600 mb-3 leading-relaxed">Desgaste progresivo del cartílago articular que causa dolor, rigidez y limitación del movimiento.</p>
+          <div class="space-y-2">
+            <div class="flex justify-between items-center">
+              <span class="text-sm text-gray-500">Eficacia del tratamiento</span>
+              <span class="text-2xl font-bold" style="color: rgb(0, 83, 161)">91%</span>
+            </div>
+            <div class="w-full h-2.5 bg-gray-100 rounded-full overflow-hidden">
+              <div class="h-full rounded-full transition-all duration-1000" style="width: 91%; background: linear-gradient(90deg, rgb(0, 83, 161), rgb(0, 120, 200))"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. Reumatismo de Partes Blandas — 89% -->
+        <div class="group bg-white rounded-2xl shadow-lg p-6 transition-all duration-300 hover:shadow-xl hover:-translate-y-1 border-l-4" style="border-left-color: rgb(83, 175, 49)">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0" style="background: linear-gradient(135deg, rgba(83, 175, 49, 0.15), rgba(83, 175, 49, 0.05))">
+              <svg class="w-6 h-6" style="color: rgb(83, 175, 49)" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+              </svg>
+            </div>
+            <h3 class="text-lg font-bold text-gray-900">Reumatismo de Partes Blandas</h3>
+          </div>
+          <p class="text-sm text-gray-600 mb-3 leading-relaxed">Afecciones que involucran tendones, ligamentos, bolsas sinoviales y músculos causando dolor e inflamación localizada.</p>
+          <div class="space-y-2">
+            <div class="flex justify-between items-center">
+              <span class="text-sm text-gray-500">Eficacia del tratamiento</span>
+              <span class="text-2xl font-bold" style="color: rgb(83, 175, 49)">89%</span>
+            </div>
+            <div class="w-full h-2.5 bg-gray-100 rounded-full overflow-hidden">
+              <div class="h-full rounded-full transition-all duration-1000" style="width: 89%; background: linear-gradient(90deg, rgb(83, 175, 49), rgb(120, 200, 80))"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3. Espondiloartritis — 76% -->
+        <div class="group bg-white rounded-2xl shadow-lg p-6 transition-all duration-300 hover:shadow-xl hover:-translate-y-1 border-l-4" style="border-left-color: rgb(0, 83, 161)">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0" style="background: linear-gradient(135deg, rgba(0, 83, 161, 0.15), rgba(0, 83, 161, 0.05))">
+              <svg class="w-6 h-6" style="color: rgb(0, 83, 161)" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+              </svg>
+            </div>
+            <h3 class="text-lg font-bold text-gray-900">Espondiloartritis</h3>
+          </div>
+          <p class="text-sm text-gray-600 mb-3 leading-relaxed">Grupo de enfermedades inflamatorias que afectan principalmente la columna vertebral y las articulaciones sacroilíacas.</p>
+          <div class="space-y-2">
+            <div class="flex justify-between items-center">
+              <span class="text-sm text-gray-500">Eficacia del tratamiento</span>
+              <span class="text-2xl font-bold" style="color: rgb(0, 83, 161)">76%</span>
+            </div>
+            <div class="w-full h-2.5 bg-gray-100 rounded-full overflow-hidden">
+              <div class="h-full rounded-full transition-all duration-1000" style="width: 76%; background: linear-gradient(90deg, rgb(0, 83, 161), rgb(0, 120, 200))"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4. Artritis Reumatoide — 67% -->
+        <div class="group bg-white rounded-2xl shadow-lg p-6 transition-all duration-300 hover:shadow-xl hover:-translate-y-1 border-l-4" style="border-left-color: rgb(83, 175, 49)">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0" style="background: linear-gradient(135deg, rgba(83, 175, 49, 0.15), rgba(83, 175, 49, 0.05))">
+              <svg class="w-6 h-6" style="color: rgb(83, 175, 49)" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 11.5V14m0-2.5v-6a1.5 1.5 0 113 0m-3 6a1.5 1.5 0 00-3 0v2a7.5 7.5 0 0015 0v-5a1.5 1.5 0 00-3 0m-6-3V11m0-5.5v-1a1.5 1.5 0 013 0v1m0 0V11m0-5.5a1.5 1.5 0 013 0v3m0 0V11"/>
+              </svg>
+            </div>
+            <h3 class="text-lg font-bold text-gray-900">Artritis Reumatoide</h3>
+          </div>
+          <p class="text-sm text-gray-600 mb-3 leading-relaxed">Enfermedad autoinmune que causa inflamación crónica de las articulaciones, dolor y deformidad progresiva.</p>
+          <div class="space-y-2">
+            <div class="flex justify-between items-center">
+              <span class="text-sm text-gray-500">Eficacia del tratamiento</span>
+              <span class="text-2xl font-bold" style="color: rgb(83, 175, 49)">67%</span>
+            </div>
+            <div class="w-full h-2.5 bg-gray-100 rounded-full overflow-hidden">
+              <div class="h-full rounded-full transition-all duration-1000" style="width: 67%; background: linear-gradient(90deg, rgb(83, 175, 49), rgb(120, 200, 80))"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 5. Fibromialgia — 65% -->
+        <div class="group bg-white rounded-2xl shadow-lg p-6 transition-all duration-300 hover:shadow-xl hover:-translate-y-1 border-l-4" style="border-left-color: rgb(242, 144, 88)">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0" style="background: linear-gradient(135deg, rgba(242, 144, 88, 0.15), rgba(242, 144, 88, 0.05))">
+              <svg class="w-6 h-6" style="color: rgb(242, 144, 88)" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+              </svg>
+            </div>
+            <h3 class="text-lg font-bold text-gray-900">Fibromialgia</h3>
+          </div>
+          <p class="text-sm text-gray-600 mb-3 leading-relaxed">Condición caracterizada por dolor musculoesquelético generalizado, fatiga crónica y alteraciones del sueño.</p>
+          <div class="space-y-2">
+            <div class="flex justify-between items-center">
+              <span class="text-sm text-gray-500">Eficacia del tratamiento</span>
+              <span class="text-2xl font-bold" style="color: rgb(242, 144, 88)">65%</span>
+            </div>
+            <div class="w-full h-2.5 bg-gray-100 rounded-full overflow-hidden">
+              <div class="h-full rounded-full transition-all duration-1000" style="width: 65%; background: linear-gradient(90deg, rgb(242, 144, 88), rgb(255, 170, 120))"></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Separador -->
+      <div class="flex items-center justify-center gap-6 mt-12">
+        <div class="h-1 w-40 bg-gradient-to-r from-transparent via-blue-500 to-blue-600 rounded-full"></div>
+        <div class="flex gap-2">
+          <div class="w-3 h-3 bg-blue-600 rounded-full animate-pulse"></div>
+          <div class="w-2 h-2 bg-blue-500 rounded-full"></div>
+        </div>
+        <div class="h-1 w-40 bg-gradient-to-l from-transparent via-blue-500 to-blue-600 rounded-full"></div>
+      </div>
+    </section>
+
+    <!-- Sección Nuestros Médicos -->
+    <section id="nuestros-medicos" class="mb-16 scroll-mt-20">
+      <div class="text-center mb-8">
+        <h2 class="text-5xl font-bold text-blue-600 mb-8">Nuestros Médicos</h2>
+        <div class="flex items-center justify-center gap-6">
+          <div class="h-1 w-40 rounded-full" style="background: linear-gradient(to right, transparent, rgb(0, 83, 161))"></div>
+          <div class="flex gap-2">
+            <div class="w-3 h-3 rounded-full animate-pulse" style="background-color: rgb(0, 83, 161)"></div>
+            <div class="w-2 h-2 rounded-full" style="background-color: rgb(83, 175, 49)"></div>
+            <div class="w-2 h-2 rounded-full" style="background-color: rgb(242, 144, 88)"></div>
+          </div>
+          <div class="h-1 w-40 rounded-full" style="background: linear-gradient(to left, transparent, rgb(242, 144, 88))"></div>
+        </div>
+      </div>
+
+      <div class="max-w-4xl mx-auto mb-12 px-4">
+        <p class="text-justify text-lg text-gray-700 leading-relaxed">
+          Nuestro equipo médico está especializado en el manejo del dolor articular, enfermedades reumáticas como: Osteoartrosis |Artritis Reumatoide | Fibromialgia | Espondiloartritis | Reumatismos de Partes Blandas.
+        </p>
+        <p class="text-justify text-lg text-gray-700 leading-relaxed mt-4">
+          Brindamos diagnóstico preciso y tratamientos personalizados para mejorar la calidad de vida de nuestros pacientes.
+        </p>
+      </div>
+
+      <!-- Grid de doctores -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-7xl mx-auto px-4">
+        <!-- Doctor 1: Alexander -->
+        <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
+          <div class="aspect-square overflow-hidden">
+            <img
+              src="/assets/images/team/alexander.avif"
+              alt="Dr. Alexander Fernández Portello - Especialista en Reumatología, Director Médico Artricenter La Raza"
+              class="w-full h-full object-cover"
+              loading="lazy"
+            />
+          </div>
+          <div class="p-6 text-center">
+            <h3 class="text-xl font-bold text-gray-900 mb-2">Director Médico de Artricenter La Raza</h3>
+            <p class="text-lg font-semibold text-blue-600 mb-1">Dr. Alexander Fernández Portello</p>
+            <p class="text-sm text-gray-600 mb-4">Especialista en Reumatología</p>
+            <p class="text-sm text-gray-700 mb-4">
+              Calzada Vallejo 233, Héroes de Nacozári, Gustavo A. Madero, 07780 Ciudad de México, CDMX
+            </p>
+            <div class="flex justify-center gap-4">
+              <a href="#" class="text-blue-600 hover:text-blue-700 transition-colors" aria-label="Facebook">
+                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+              </a>
+              <a href="#" class="text-blue-400 hover:text-blue-500 transition-colors" aria-label="Twitter">
+                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/></svg>
+              </a>
+              <a href="#" class="text-blue-700 hover:text-blue-800 transition-colors" aria-label="LinkedIn">
+                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Doctor 2: Cira -->
+        <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
+          <div class="aspect-square overflow-hidden">
+            <img
+              src="/assets/images/team/cira.avif"
+              alt="Dra. Cira Cibelis Calzadilla Columbie - Especialista en Reumatología, Directora Médica Artricenter Atizapán"
+              class="w-full h-full object-cover"
+              loading="lazy"
+            />
+          </div>
+          <div class="p-6 text-center">
+            <h3 class="text-xl font-bold text-gray-900 mb-2">Director Médico de Artricenter Atizapán</h3>
+            <p class="text-lg font-semibold text-blue-600 mb-1">Dra. Cira Cibelis Calzadilla Columbie</p>
+            <p class="text-sm text-gray-600 mb-4">Especialista en Reumatología</p>
+            <p class="text-sm text-gray-700 mb-4">
+              Boulevard Adolfo López Mateos No. 65, Manzana 1, Lote 16, Zona 8, El Potrero, 57975, Ex-Ejido de Atizapán III, C.P. 57975
+            </p>
+            <div class="flex justify-center gap-4">
+              <a href="#" class="text-blue-600 hover:text-blue-700 transition-colors" aria-label="Facebook">
+                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+              </a>
+              <a href="#" class="text-blue-400 hover:text-blue-500 transition-colors" aria-label="Twitter">
+                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/></svg>
+              </a>
+              <a href="#" class="text-blue-700 hover:text-blue-800 transition-colors" aria-label="LinkedIn">
+                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Doctor 3: Justo -->
+        <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
+          <div class="aspect-square overflow-hidden">
+            <img
+              src="/assets/images/team/justo.avif"
+              alt="Dr. Justo Méndez - Especialista en Reumatología, Director Médico Artricenter Viaducto"
+              class="w-full h-full object-cover"
+              loading="lazy"
+            />
+          </div>
+          <div class="p-6 text-center">
+            <h3 class="text-xl font-bold text-gray-900 mb-2">Director Médico de Artricenter Viaducto</h3>
+            <p class="text-lg font-semibold text-blue-600 mb-1">Dr. Justo Méndez</p>
+            <p class="text-sm text-gray-600 mb-4">Especialista en Reumatología</p>
+            <p class="text-sm text-gray-700 mb-4">
+              Viaducto Río de la Piedad 130, Jamaica, Venustiano Carranza, 15800 Ciudad de México, CDMX
+            </p>
+            <div class="flex justify-center gap-4">
+              <a href="#" class="text-blue-600 hover:text-blue-700 transition-colors" aria-label="Facebook">
+                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+              </a>
+              <a href="#" class="text-blue-400 hover:text-blue-500 transition-colors" aria-label="Twitter">
+                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/></svg>
+              </a>
+              <a href="#" class="text-blue-700 hover:text-blue-800 transition-colors" aria-label="LinkedIn">
+                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex items-center justify-center gap-6 mt-12">
+        <div class="h-1 w-40 bg-gradient-to-r from-transparent via-blue-500 to-blue-600 rounded-full"></div>
+        <div class="flex gap-2">
+          <div class="w-3 h-3 bg-blue-600 rounded-full animate-pulse"></div>
+          <div class="w-2 h-2 bg-blue-500 rounded-full"></div>
+        </div>
+        <div class="h-1 w-40 bg-gradient-to-l from-transparent via-blue-500 to-blue-600 rounded-full"></div>
+      </div>
+    </section>
+
+    <!-- Sección Misión | Visión | Valores -->
+    <section id="mision-vision-valores" class="py-16 bg-gradient-to-br from-blue-50 via-white to-green-50 scroll-mt-20">
+      <div class="text-center mb-12 px-4">
+        <h2 class="text-4xl md:text-5xl font-bold mb-4" style="background: linear-gradient(135deg, rgb(0, 83, 161), rgb(83, 175, 49), rgb(242, 144, 88)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">
+          Misión | Visión | Valores
+        </h2>
+        <div class="flex items-center justify-center gap-6 mt-6">
+          <div class="h-1 w-32 rounded-full" style="background: linear-gradient(to right, transparent, rgb(0, 83, 161))"></div>
+          <div class="flex gap-2">
+            <div class="w-3 h-3 rounded-full animate-pulse" style="background-color: rgb(0, 83, 161)"></div>
+            <div class="w-2 h-2 rounded-full animate-bounce" style="background-color: rgb(83, 175, 49); animation-delay: 0.1s"></div>
+            <div class="w-2 h-2 rounded-full animate-bounce" style="background-color: rgb(242, 144, 88); animation-delay: 0.2s"></div>
+          </div>
+          <div class="h-1 w-32 rounded-full" style="background: linear-gradient(to left, transparent, rgb(242, 144, 88))"></div>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-7xl mx-auto px-4">
+        <!-- Misión -->
+        <div class="group relative bg-white rounded-3xl shadow-2xl p-8 overflow-hidden transition-all duration-500 hover:shadow-3xl hover:-translate-y-2 border-2" style="border-color: rgb(0, 83, 161)">
+          <!-- Animated Background -->
+          <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500" style="background: radial-gradient(circle at top right, rgba(0, 83, 161, 0.1), transparent 70%)"></div>
+
+          <!-- Icon Container -->
+          <div class="relative flex justify-center mb-6">
+            <div class="relative">
+              <!-- Outer rotating ring -->
+              <div class="absolute inset-0 rounded-full animate-spin" style="border: 3px solid transparent; border-top-color: rgb(0, 83, 161); border-right-color: rgb(0, 83, 161); animation-duration: 3s;"></div>
+              <!-- Inner pulsing circle -->
+              <div class="w-20 h-20 rounded-full flex items-center justify-center transition-transform duration-500 group-hover:scale-110 group-hover:rotate-12" style="background: linear-gradient(135deg, rgb(0, 83, 161), rgb(0, 120, 200)); box-shadow: 0 10px 30px rgba(0, 83, 161, 0.3);">
+                <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+                </svg>
+              </div>
+            </div>
+          </div>
+
+          <!-- Content -->
+          <div class="relative">
+            <h3 class="text-2xl font-bold text-center mb-4" style="color: rgb(0, 83, 161)">MISIÓN</h3>
+            <p class="text-gray-700 text-center leading-relaxed">
+              Mejorar sin dañar a los pacientes con enfermedades reumáticas: osteoartrosis, artritis reumatoide, fibromialgia, espondiloartritis y reumatismos de partes blandas.
+            </p>
+          </div>
+
+          <!-- Decorative particles -->
+          <div class="absolute top-6 right-6 w-3 h-3 rounded-full opacity-0 group-hover:opacity-60 group-hover:animate-ping transition-all duration-500" style="background: rgb(0, 83, 161)"></div>
+          <div class="absolute bottom-6 left-6 w-2 h-2 rounded-full opacity-0 group-hover:opacity-40 group-hover:animate-pulse transition-all duration-500 delay-100" style="background: rgb(0, 83, 161)"></div>
+          <div class="absolute top-1/2 right-4 w-2 h-2 rounded-full opacity-0 group-hover:opacity-30 transition-all duration-500 delay-200" style="background: rgb(0, 83, 161)"></div>
+        </div>
+
+        <!-- Visión -->
+        <div class="group relative bg-white rounded-3xl shadow-2xl p-8 overflow-hidden transition-all duration-500 hover:shadow-3xl hover:-translate-y-2 border-2" style="border-color: rgb(83, 175, 49)">
+          <!-- Animated Background -->
+          <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500" style="background: radial-gradient(circle at top right, rgba(83, 175, 49, 0.1), transparent 70%)"></div>
+
+          <!-- Icon Container -->
+          <div class="relative flex justify-center mb-6">
+            <div class="relative">
+              <!-- Outer rotating ring -->
+              <div class="absolute inset-0 rounded-full animate-spin" style="border: 3px solid transparent; border-top-color: rgb(83, 175, 49); border-right-color: rgb(83, 175, 49); animation-duration: 3s;"></div>
+              <!-- Inner pulsing circle -->
+              <div class="w-20 h-20 rounded-full flex items-center justify-center transition-transform duration-500 group-hover:scale-110 group-hover:rotate-12" style="background: linear-gradient(135deg, rgb(83, 175, 49), rgb(120, 200, 80)); box-shadow: 0 10px 30px rgba(83, 175, 49, 0.3);">
+                <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+                </svg>
+              </div>
+            </div>
+          </div>
+
+          <!-- Content -->
+          <div class="relative">
+            <h3 class="text-2xl font-bold text-center mb-4" style="color: rgb(83, 175, 49)">VISIÓN</h3>
+            <p class="text-gray-700 text-center leading-relaxed">
+              Ser el Centro Médico líder en México para el tratamiento de las enfermedades reumáticas: Osteoartrosis, Artritis Reumatoide y Fibromialgia.
+            </p>
+          </div>
+
+          <!-- Decorative particles -->
+          <div class="absolute top-6 right-6 w-3 h-3 rounded-full opacity-0 group-hover:opacity-60 group-hover:animate-ping transition-all duration-500" style="background: rgb(83, 175, 49)"></div>
+          <div class="absolute bottom-6 left-6 w-2 h-2 rounded-full opacity-0 group-hover:opacity-40 group-hover:animate-pulse transition-all duration-500 delay-100" style="background: rgb(83, 175, 49)"></div>
+          <div class="absolute top-1/2 right-4 w-2 h-2 rounded-full opacity-0 group-hover:opacity-30 transition-all duration-500 delay-200" style="background: rgb(83, 175, 49)"></div>
+        </div>
+
+        <!-- Valores -->
+        <div class="group relative bg-white rounded-3xl shadow-2xl p-8 overflow-hidden transition-all duration-500 hover:shadow-3xl hover:-translate-y-2 border-2" style="border-color: rgb(242, 144, 88)">
+          <!-- Animated Background -->
+          <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500" style="background: radial-gradient(circle at top right, rgba(242, 144, 88, 0.1), transparent 70%)"></div>
+
+          <!-- Icon Container -->
+          <div class="relative flex justify-center mb-6">
+            <div class="relative">
+              <!-- Outer rotating ring -->
+              <div class="absolute inset-0 rounded-full animate-spin" style="border: 3px solid transparent; border-top-color: rgb(242, 144, 88); border-right-color: rgb(242, 144, 88); animation-duration: 3s;"></div>
+              <!-- Inner pulsing circle -->
+              <div class="w-20 h-20 rounded-full flex items-center justify-center transition-transform duration-500 group-hover:scale-110 group-hover:rotate-12" style="background: linear-gradient(135deg, rgb(242, 144, 88), rgb(255, 170, 120)); box-shadow: 0 10px 30px rgba(242, 144, 88, 0.3);">
+                <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/>
+                </svg>
+              </div>
+            </div>
+          </div>
+
+          <!-- Content -->
+          <div class="relative">
+            <h3 class="text-2xl font-bold text-center mb-4" style="color: rgb(242, 144, 88)">VALORES</h3>
+            <ul class="space-y-3 text-gray-700">
+              <li class="flex items-center gap-3 transition-transform duration-300 hover:translate-x-2">
+                <div class="w-2 h-2 rounded-full flex-shrink-0" style="background-color: rgb(242, 144, 88)"></div>
+                <span>Satisfacción del cliente</span>
+              </li>
+              <li class="flex items-center gap-3 transition-transform duration-300 hover:translate-x-2">
+                <div class="w-2 h-2 rounded-full flex-shrink-0" style="background-color: rgb(242, 144, 88)"></div>
+                <span>Innovación permanente</span>
+              </li>
+              <li class="flex items-center gap-3 transition-transform duration-300 hover:translate-x-2">
+                <div class="w-2 h-2 rounded-full flex-shrink-0" style="background-color: rgb(242, 144, 88)"></div>
+                <span>Desarrollo permanente de nuestro personal</span>
+              </li>
+              <li class="flex items-center gap-3 transition-transform duration-300 hover:translate-x-2">
+                <div class="w-2 h-2 rounded-full flex-shrink-0" style="background-color: rgb(242, 144, 88)"></div>
+                <span>Cumplimiento de los Objetivos</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Decorative particles -->
+          <div class="absolute top-6 right-6 w-3 h-3 rounded-full opacity-0 group-hover:opacity-60 group-hover:animate-ping transition-all duration-500" style="background: rgb(242, 144, 88)"></div>
+          <div class="absolute bottom-6 left-6 w-2 h-2 rounded-full opacity-0 group-hover:opacity-40 group-hover:animate-pulse transition-all duration-500 delay-100" style="background: rgb(242, 144, 88)"></div>
+          <div class="absolute top-1/2 right-4 w-2 h-2 rounded-full opacity-0 group-hover:opacity-30 transition-all duration-500 delay-200" style="background: rgb(242, 144, 88)"></div>
+        </div>
+      </div>
+
+      <!-- Bottom separator -->
+      <div class="flex items-center justify-center gap-6 mt-12 px-4">
+        <div class="h-1 w-32 rounded-full" style="background: linear-gradient(to right, transparent, rgb(0, 83, 161))"></div>
+        <div class="flex gap-2">
+          <div class="w-3 h-3 rounded-full animate-pulse" style="background-color: rgb(0, 83, 161)"></div>
+          <div class="w-2 h-2 rounded-full animate-bounce" style="background-color: rgb(83, 175, 49); animation-delay: 0.1s"></div>
+          <div class="w-2 h-2 rounded-full animate-bounce" style="background-color: rgb(242, 144, 88); animation-delay: 0.2s"></div>
+        </div>
+        <div class="h-1 w-32 rounded-full" style="background: linear-gradient(to left, transparent, rgb(242, 144, 88))"></div>
+      </div>
+    </section>
+  </div>
+
+  <style is:global>
+    /* Carousel */
+    #hero-carousel {
+      position: relative;
+      user-select: none;
+    }
+
+    .carousel-track {
+      display: flex;
+      transition: transform 0.5s ease-in-out;
+    }
+
+    .carousel-slide {
+      min-width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .carousel-slide img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .carousel-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(0, 83, 161, 0.6);
+      color: white;
+      border: none;
+      padding: 0.75rem 1rem;
+      cursor: pointer;
+      font-size: 1.25rem;
+      border-radius: 0.5rem;
+      transition: background 0.3s;
+      z-index: 10;
+    }
+
+    .carousel-btn:hover {
+      background: rgba(0, 83, 161, 0.9);
+    }
+
+    .carousel-prev {
+      left: 0.75rem;
+    }
+
+    .carousel-next {
+      right: 0.75rem;
+    }
+
+    .carousel-dots {
+      position: absolute;
+      bottom: 0.75rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 0.5rem;
+      z-index: 10;
+    }
+
+    .carousel-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.5);
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .carousel-dot.active {
+      background: rgb(0, 83, 161);
+    }
+
+
+    /* ============================
+       TIMELINE — Línea del Tiempo
+       ============================ */
+
+    /* Título decorado */
+    .timeline-section-header {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .timeline-header-line {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex: 1;
+      max-width: 180px;
+      min-width: 60px;
+    }
+
+    .timeline-header-dots {
+      flex: 1;
+      border-top: 3px dotted #0053A1;
+    }
+
+    .timeline-header-arrow {
+      color: #0053A1;
+      font-size: 0.9rem;
+      line-height: 1;
+    }
+
+    .timeline-container {
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Línea central — fondo (gris claro) */
+    .timeline-line-bg {
+      position: absolute;
+      left: 50%;
+      top: 0;
+      bottom: 0;
+      width: 4px;
+      background-color: #e2e8f0;
+      transform: translateX(-50%);
+      border-radius: 9999px;
+      z-index: 1;
+    }
+
+    /* Línea central — progreso (azul) */
+    .timeline-line-progress {
+      position: absolute;
+      left: 50%;
+      top: 0;
+      width: 4px;
+      height: 0;
+      background: linear-gradient(to bottom, #0053A1, #2b6cb0);
+      transform: translateX(-50%);
+      border-radius: 9999px;
+      z-index: 2;
+      transition: height 0.1s linear;
+    }
+
+    /* Conectores entre hitos */
+    .timeline-connector {
+      position: relative;
+      height: 50px;
+      width: 100%;
+      z-index: 3;
+    }
+
+    .timeline-connector svg {
+      width: 100%;
+      height: 100%;
+      overflow: visible;
+    }
+
+    /* Colores de conectores */
+    .timeline-connector--right {
+      color: #53AF31;
+    }
+
+    .timeline-connector--left {
+      color: #F29058;
+    }
+
+    .timeline-connector:nth-of-type(6) {
+      color: #00BCD4;
+    }
+
+    /* Cada fila del timeline (3 columnas: contenido | círculo | vacío) */
+    .timeline-item {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      gap: 2rem;
+      margin-bottom: 0;
+      position: relative;
+      z-index: 3;
+    }
+
+    /* Círculo central con imagen */
+    .timeline-circle {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 5px solid #0053A1;
+      background: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+      position: relative;
+      z-index: 4;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .timeline-circle:hover {
+      transform: scale(1.08);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    }
+
+    .timeline-circle img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* Círculo "actualidad" */
+    .timeline-circle--current {
+      background: linear-gradient(135deg, #0053A1, #2b6cb0);
+      color: #fff;
+      box-shadow: 0 0 20px rgba(0, 83, 161, 0.4), 0 0 40px rgba(0, 83, 161, 0.15);
+      animation: pulse-glow 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse-glow {
+      0%, 100% { box-shadow: 0 0 20px rgba(0, 83, 161, 0.4), 0 0 40px rgba(0, 83, 161, 0.15); }
+      50% { box-shadow: 0 0 25px rgba(0, 83, 161, 0.6), 0 0 50px rgba(0, 83, 161, 0.25); }
+    }
+
+    /* Columna vacía */
+    .timeline-empty {
+      display: block;
+    }
+
+    /* Tarjeta base */
+    .timeline-card {
+      background: #fff;
+      border-radius: 2rem;
+      padding: 1.5rem 2rem;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border: 2px solid transparent;
+    }
+
+    .timeline-card:hover {
+      transform: scale(1.02);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.16);
+    }
+
+    /* Colores por hito */
+    .timeline-item--1 .timeline-card {
+      background: #E3F2FD;
+      border-color: #0053A1;
+    }
+
+    .timeline-item--1 .timeline-circle {
+      border-color: #0053A1;
+    }
+
+    .timeline-item--1 .timeline-year {
+      background: #0053A1;
+    }
+
+    .timeline-item--1 .timeline-title {
+      color: #0053A1;
+    }
+
+    .timeline-item--2 .timeline-card {
+      background: #E8F5E9;
+      border-color: #53AF31;
+    }
+
+    .timeline-item--2 .timeline-circle {
+      border-color: #53AF31;
+    }
+
+    .timeline-item--2 .timeline-year {
+      background: #53AF31;
+    }
+
+    .timeline-item--2 .timeline-title {
+      color: #2E7D32;
+    }
+
+    .timeline-item--3 .timeline-card {
+      background: #FFF3E0;
+      border-color: #F29058;
+    }
+
+    .timeline-item--3 .timeline-circle {
+      border-color: #F29058;
+    }
+
+    .timeline-item--3 .timeline-year {
+      background: #F29058;
+    }
+
+    .timeline-item--3 .timeline-title {
+      color: #E65100;
+    }
+
+    .timeline-item--4 .timeline-card {
+      background: #E0F7FA;
+      border-color: #00BCD4;
+    }
+
+    .timeline-item--4 .timeline-circle {
+      border-color: #00BCD4;
+    }
+
+    .timeline-item--4 .timeline-year {
+      background: #00BCD4;
+    }
+
+    .timeline-item--4 .timeline-title {
+      color: #00838F;
+    }
+
+    /* Año como badge */
+    .timeline-year {
+      display: inline-block;
+      color: #fff;
+      font-weight: 700;
+      font-size: 0.85rem;
+      padding: 0.35rem 1rem;
+      border-radius: 9999px;
+      margin-bottom: 0.75rem;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    }
+
+    /* Título del hito */
+    .timeline-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    /* Texto descriptivo */
+    .timeline-text {
+      color: #4a5568;
+      line-height: 1.7;
+      font-size: 0.95rem;
+    }
+
+    /* Tabla de porcentajes */
+    .timeline-stats {
+      margin-top: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .timeline-stat-row {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.82rem;
+    }
+
+    .timeline-stat-label {
+      min-width: 140px;
+      color: #4a5568;
+      font-weight: 500;
+    }
+
+    .timeline-stat-bar-bg {
+      flex: 1;
+      height: 8px;
+      background-color: rgba(255, 255, 255, 0.6);
+      border-radius: 9999px;
+      overflow: hidden;
+      border: 1px solid rgba(0, 0, 0, 0.05);
+    }
+
+    .timeline-stat-bar {
+      height: 100%;
+      border-radius: 9999px;
+      background: linear-gradient(90deg, #0053A1, #2b6cb0);
+      width: 0;
+      transition: width 1.2s ease-out;
+    }
+
+    .timeline-stat-bar.animated {
+      /* width set via JS data-percent */
+    }
+
+    .timeline-stat-value {
+      min-width: 36px;
+      text-align: right;
+      font-weight: 700;
+      color: #0053A1;
+    }
+
+    /* ============================
+       ANIMACIONES DE SCROLL
+       ============================ */
+
+    /* Estado inicial — oculto */
+    .reveal-left {
+      opacity: 0;
+      transform: translateX(-60px);
+      transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+    }
+
+    .reveal-right {
+      opacity: 0;
+      transform: translateX(60px);
+      transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+    }
+
+    .reveal-center {
+      opacity: 0;
+      transform: scale(0.5);
+      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    }
+
+    /* Estado visible */
+    .reveal-left.visible,
+    .reveal-right.visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .reveal-center.visible {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    /* ============================
+       RESPONSIVE — MOBILE FIRST
+       ============================ */
+
+    @media (max-width: 767px) {
+      .timeline-section-header {
+        gap: 0.75rem;
+      }
+
+      .timeline-header-line {
+        max-width: 60px;
+        min-width: 30px;
+      }
+
+      .timeline-header-dots {
+        border-top-width: 2px;
+      }
+
+      .timeline-header-arrow {
+        font-size: 0.7rem;
+      }
+
+      /* Ocultar conectores en mobile */
+      .timeline-connector {
+        display: none;
+      }
+
+      /* En mobile: línea a la izquierda, todas las tarjetas a la derecha */
+      .timeline-line-bg,
+      .timeline-line-progress {
+        left: 40px;
+        transform: none;
+      }
+
+      .timeline-item {
+        grid-template-columns: auto 1fr;
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+      }
+
+      /* En mobile el primer slot es el círculo, el segundo la tarjeta */
+      .timeline-item.timeline-left .timeline-empty,
+      .timeline-item.timeline-right .timeline-empty {
+        display: none;
+      }
+
+      .timeline-item.timeline-left {
+        grid-template-columns: auto 1fr;
+      }
+
+      .timeline-item.timeline-right {
+        grid-template-columns: auto 1fr;
+      }
+
+      /* Reordenar: siempre círculo primero, luego tarjeta */
+      .timeline-item.timeline-left .timeline-content {
+        order: 2;
+      }
+
+      .timeline-item.timeline-left .timeline-circle {
+        order: 1;
+      }
+
+      .timeline-item.timeline-left .timeline-empty {
+        order: 3;
+      }
+
+      .timeline-item.timeline-right .timeline-empty {
+        order: 1;
+        display: none;
+      }
+
+      .timeline-item.timeline-right .timeline-circle {
+        order: 1;
+      }
+
+      .timeline-item.timeline-right .timeline-content {
+        order: 2;
+      }
+
+      .timeline-circle {
+        width: 80px;
+        height: 80px;
+        border-width: 4px;
+      }
+
+      .timeline-card {
+        border-radius: 1.25rem;
+        padding: 1rem 1.25rem;
+      }
+
+      .timeline-stat-label {
+        min-width: 100px;
+        font-size: 0.75rem;
+      }
+
+      .timeline-stat-value {
+        font-size: 0.75rem;
+      }
+
+      .timeline-stat-row {
+        font-size: 0.75rem;
+      }
+    }
+
+    @media (min-width: 768px) {
+      .timeline-circle {
+        width: 100px;
+        height: 100px;
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .timeline-circle {
+        width: 120px;
+        height: 120px;
+      }
+    }
+  </style>
+
+  <!-- Script: Carousel -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const track = document.getElementById('carousel-track');
+      const dots = document.querySelectorAll('.carousel-dot');
+      const prevBtn = document.querySelector('.carousel-prev');
+      const nextBtn = document.querySelector('.carousel-next');
+      if (!track || dots.length === 0) return;
+
+      let current = 0;
+      const total = dots.length;
+
+      function goTo(index) {
+        current = ((index % total) + total) % total;
+        track.style.transform = `translateX(-${current * 100}%)`;
+        dots.forEach((d, i) => d.classList.toggle('active', i === current));
+      }
+
+      prevBtn?.addEventListener('click', () => goTo(current - 1));
+      nextBtn?.addEventListener('click', () => goTo(current + 1));
+      dots.forEach((dot) => {
+        dot.addEventListener('click', () => goTo(parseInt(dot.dataset.index)));
+      });
+
+      setInterval(() => goTo(current + 1), 5000);
+    });
+  </script>
+
+  <!-- Script: IntersectionObserver para animaciones de scroll -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const timelineContainer = document.querySelector('.timeline-container');
+      const progressBar = document.getElementById('timeline-progress');
+      const items = document.querySelectorAll('.timeline-item');
+
+      if (!timelineContainer || !progressBar || items.length === 0) return;
+
+      // ——— Animate cards and circles on scroll ———
+      items.forEach((item) => {
+        const side = item.getAttribute('data-side');
+        const content = item.querySelector('.timeline-content');
+        const circle = item.querySelector('.timeline-circle');
+
+        if (content) {
+          content.classList.add(side === 'left' ? 'reveal-left' : 'reveal-right');
+        }
+        if (circle) {
+          circle.classList.add('reveal-center');
+        }
+      });
+
+      const revealObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('visible');
+              // Animate stat bars inside this item
+              const bars = entry.target.querySelectorAll('.timeline-stat-bar');
+              bars.forEach((bar) => {
+                const percent = bar.getAttribute('data-percent');
+                setTimeout(() => {
+                  bar.style.width = percent + '%';
+                }, 300);
+              });
+            }
+          });
+        },
+        { threshold: 0.2, rootMargin: '0px 0px -50px 0px' }
+      );
+
+      // Observe all animated elements
+      document.querySelectorAll('.reveal-left, .reveal-right, .reveal-center').forEach((el) => {
+        revealObserver.observe(el);
+      });
+
+      // ——— Animate progress line on scroll ———
+      function updateProgressLine() {
+        const rect = timelineContainer.getBoundingClientRect();
+        const containerTop = rect.top;
+        const containerHeight = rect.height;
+        const viewportCenter = window.innerHeight / 2;
+
+        // Calculate how far the user has scrolled through the timeline
+        const scrolled = viewportCenter - containerTop;
+        const progress = Math.max(0, Math.min(1, scrolled / containerHeight));
+
+        progressBar.style.height = (progress * containerHeight) + 'px';
+      }
+
+      // Use scroll event with requestAnimationFrame for smooth updates
+      let ticking = false;
+      window.addEventListener('scroll', () => {
+        if (!ticking) {
+          window.requestAnimationFrame(() => {
+            updateProgressLine();
+            ticking = false;
+          });
+          ticking = true;
+        }
+      }, { passive: true });
+
+      // Initial update
+      updateProgressLine();
+    });
+  </script>
+</Layout>

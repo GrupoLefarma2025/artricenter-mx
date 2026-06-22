@@ -1,0 +1,329 @@
+---
+import '@/styles/global.css';
+import Header from '@/components/layout/Header.astro';
+import Footer from '@/components/layout/Footer.astro';
+import { navConfig } from '@/config/navigation';
+
+interface Props {
+  title: string;
+  description?: string;
+  currentPage?: string;
+  ogImage?: string;
+  jsonLd?: object;
+}
+
+const {
+  title = 'Artricenter',
+  description = 'Clinica enfocada en diagnostico y tratamiento integral de enfermedades reumaticas.',
+  currentPage = '/',
+  ogImage = '/assets/images/brand/og-image.jpg',
+  jsonLd
+} = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const fullOgImage = new URL(ogImage, Astro.site).href;
+---
+
+<!doctype html>
+<html lang="es" class="overflow-x-hidden">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#0053a1" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="canonical" href={canonicalURL} />
+    <meta name="description" content={description} />
+    <meta name="robots" content="index, follow" />
+    <meta name="geo.region" content="MX-CMX" />
+    <meta name="geo.placename" content="Ciudad de México" />
+    <meta name="author" content="Artricenter" />
+
+    <meta property="og:locale" content="es_MX" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Artricenter" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:image" content={fullOgImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={title} />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@Artricenter" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={fullOgImage} />
+
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "MedicalClinic",
+      "name": "Artricenter",
+      "alternateName": "Centro Médico de Enfermedades Reumáticas",
+      "url": "https://artricenter.com.mx",
+      "logo": "https://artricenter.com.mx/assets/images/brand/logo.jpeg",
+      "image": "https://artricenter.com.mx/assets/images/brand/og-image.jpg",
+      "description": "Clínica especializada en diagnóstico y tratamiento integral de enfermedades reumáticas como artrosis, artritis reumatoide y fibromialgia en Ciudad de México.",
+      "telephone": "+525559890607",
+      "email": "contacto@artricenter.com.mx",
+      "medicalSpecialty": "Rheumatology",
+      "priceRange": "$$",
+      "currenciesAccepted": "MXN",
+      "paymentAccepted": "Cash, Credit Card",
+      "address": [
+        {
+          "@type": "PostalAddress",
+          "streetAddress": "Calzada Vallejo 233, Héroes de Nacozári",
+          "addressLocality": "Ciudad de México",
+          "addressRegion": "CDMX",
+          "postalCode": "07780",
+          "addressCountry": "MX"
+        }
+      ],
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 19.4744,
+        "longitude": -99.1234
+      },
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+          "opens": "08:00",
+          "closes": "18:30"
+        }
+      ],
+      "sameAs": [
+        "https://www.facebook.com/artricenter",
+        "https://www.instagram.com/artricenter"
+      ]
+    })} />
+    {jsonLd && <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />}
+
+    <title>{title}</title>
+  </head>
+  <body class="bg-white text-gray-900 antialiased relative" style="font-family: 'Atkinson Hyperlegible', sans-serif;">
+    <!-- Paper Texture Background -->
+    <div class="fixed inset-0 pointer-events-none z-0" style="background-image: url('/assets/images/texture/bg.jpg'); background-size: 300px 300px; background-repeat: repeat; background-position: 0 0, 150px 150px; opacity: 0.03; mix-blend-mode: multiply;"></div>
+
+    <Header navItems={navConfig.items} currentPage={currentPage} />
+
+    <main class="min-h-screen relative z-10">
+      <slot />
+    </main>
+
+    <Footer class="relative z-10" />
+
+    <!-- Sticky Buttons -->
+    <div class="fixed bottom-0 left-0 right-0 z-50 flex justify-between items-end px-3 pb-3 sm:px-4 sm:pb-4 pointer-events-none gap-2">
+      <!-- Left side buttons: Dra. Arce and Home -->
+      <div class="flex items-end gap-2 pointer-events-auto">
+        <!-- Dra. Arce Button with Dropdown -->
+        <div class="relative group/edith pointer-events-auto">
+          <!-- Trigger Button -->
+          <div class="cursor-pointer">
+            <!-- Mobile compact version -->
+            <div id="dra-edith-mobile" class="sm:hidden relative bg-gradient-to-r from-pink-500 to-pink-600 hover:from-pink-600 hover:to-pink-700 text-white p-1.5 rounded-full shadow-2xl hover:shadow-pink-500/50 transition-all duration-300 transform hover:-translate-y-1">
+              <div class="relative w-11 h-11 rounded-full overflow-hidden border-2 border-white shadow-lg">
+                <img
+                  src="/assets/images/team/dr-arce.png"
+                  alt="Dra. Arce"
+                  class="w-full h-full object-cover"
+                />
+              </div>
+              <div class="absolute -inset-1 rounded-full border-2 border-pink-300 animate-ping opacity-75"></div>
+            </div>
+
+            <!-- Desktop full version -->
+            <div class="hidden sm:block relative bg-gradient-to-r from-pink-500 to-pink-600 hover:from-pink-600 hover:to-pink-700 text-white px-4 py-2.5 rounded-full shadow-2xl hover:shadow-pink-500/50 transition-all duration-300 transform hover:-translate-y-1 hover:scale-105">
+              <div class="flex items-center gap-2">
+                <div class="relative">
+                  <div class="w-11 h-11 rounded-full overflow-hidden border-2 border-white shadow-lg">
+                    <img
+                      src="/assets/images/team/dr-arce.png"
+                      alt="Dra. Arce"
+                      class="w-full h-full object-cover"
+                    />
+                  </div>
+                  <!-- Pulse animation ring -->
+                  <div class="absolute -inset-1 rounded-full border-2 border-pink-300 animate-ping opacity-75"></div>
+                  <!-- Shine effect -->
+                  <div class="absolute inset-0 rounded-full bg-gradient-to-tr from-transparent via-white/30 to-transparent"></div>
+                </div>
+                <div class="text-left">
+                  <p class="text-xs font-semibold leading-tight">Pregúntale a la</p>
+                  <p class="text-sm font-bold leading-tight">Dra. Arce</p>
+                </div>
+              </div>
+              <!-- Sparkle effects -->
+              <div class="absolute -top-1 -right-1 w-2 h-2 bg-yellow-300 rounded-full animate-pulse"></div>
+              <div class="absolute top-1/2 -right-1.5 w-1.5 h-1.5 bg-yellow-200 rounded-full animate-pulse delay-100"></div>
+              <div class="absolute -bottom-1 right-1/4 w-1.5 h-1.5 bg-yellow-200 rounded-full animate-pulse delay-200"></div>
+            </div>
+          </div>
+
+          <!-- Dropdown Menu -->
+          <div class="absolute bottom-full left-0 mb-3 w-72 opacity-0 invisible group-hover/edith:opacity-100 group-hover/edith:visible transition-all duration-300 z-50">
+            <div class="bg-white rounded-2xl shadow-2xl border-2 border-pink-500 p-4">
+              <h3 class="font-bold text-pink-600 mb-3 text-base flex items-center gap-2">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                </svg>
+                Opciones de consulta
+              </h3>
+              <div class="space-y-2">
+                <!-- Opción 1 -->
+                <a
+                  href="https://wa.me/525559890607?text=Hola%20Dra.%20Arce,%20tengo%20dudas%20sobre%20mi%20enfermedad%20reumática"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="block px-4 py-3 bg-gradient-to-r from-pink-50 to-pink-100 hover:from-pink-100 hover:to-pink-200 rounded-xl transition-all duration-200 group/link"
+                >
+                  <p class="text-sm font-bold text-pink-700 group-hover/link:scale-105 transition-transform">
+                    ¿Tienes dudas sobre tu enfermedad? Pregunta aquí
+                  </p>
+                </a>
+
+                <!-- Opción 2 -->
+                <a
+                  href="https://wa.me/525559890607?text=Hola%20Dra.%20Arce,%20me%20gustarían%20consejos%20para%20aliviar%20artrosis,%20artritis%20o%20fibromialgia"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="block px-4 py-3 bg-gradient-to-r from-blue-50 to-blue-100 hover:from-blue-100 hover:to-blue-200 rounded-xl transition-all duration-200 group/link"
+                >
+                  <p class="text-sm font-bold text-blue-700 group-hover/link:scale-105 transition-transform">
+                    Consejos para aliviar artrosis, artritis y fibromialgia
+                  </p>
+                </a>
+
+                <!-- Opción 3 -->
+                <a
+                  href="https://wa.me/525559890607?text=Hola%20Dra.%20Arce,%20quiero%20compartir%20mi%20historia%20contigo"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="block px-4 py-3 bg-gradient-to-r from-purple-50 to-purple-100 hover:from-purple-100 hover:to-purple-200 rounded-xl transition-all duration-200 group/link"
+                >
+                  <p class="text-sm font-bold text-purple-700 group-hover/link:scale-105 transition-transform">
+                    Cuéntame tu historia
+                  </p>
+                </a>
+              </div>
+              <div class="mt-3 pt-3 border-t border-pink-200">
+                <p class="text-xs text-pink-600 font-semibold text-center">Lunes a viernes de 8:00 a 18:30</p>
+                <p class="text-xs text-gray-500 text-center mt-1">Déjanos tu duda y a la brevedad la Dra. Arce se comunica contigo</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- WhatsApp Button - Right side -->
+      <div class="relative group/dropdown pointer-events-auto">
+        <div
+          id="whatsapp-button"
+          class="block cursor-pointer"
+          role="button"
+          tabindex="0"
+          aria-label="Agendar consulta de valoración"
+        >
+          <!-- Mobile compact version -->
+          <div class="sm:hidden relative bg-green-500 text-white w-14 h-14 rounded-full flex justify-center items-center shadow-lg hover:bg-green-600 transition-all duration-300 ease-out hover:scale-105 active:scale-95">
+            <!-- Badge -->
+            <div class="absolute -right-1 -top-1 z-10">
+              <div class="flex h-6 w-6 items-center justify-center">
+                <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-red-400 opacity-75"></span>
+                <span class="relative inline-flex h-5 w-5 items-center justify-center rounded-full bg-red-500 text-xs font-bold text-white">1</span>
+              </div>
+            </div>
+
+            <!-- WhatsApp Icon -->
+            <svg viewBox="0 0 16 16" class="w-7 h-7" fill="currentColor" height="24" width="24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.73.73 0 0 0-.529.247c-.182.198-.691.677-.691 1.654s.71 1.916.81 2.049c.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232"></path>
+            </svg>
+
+            <!-- Pulse border -->
+            <span class="absolute inset-0 rounded-full border-4 border-white/30 scale-100 animate-pulse"></span>
+          </div>
+
+          <!-- Desktop full version with text -->
+          <div class="hidden sm:block relative bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white px-4 py-2.5 rounded-full shadow-2xl hover:shadow-green-500/50 transition-all duration-300 transform hover:-translate-y-1 hover:scale-105">
+            <div class="flex items-center gap-2">
+              <div class="relative">
+                <!-- WhatsApp Icon -->
+                <svg viewBox="0 0 16 16" class="w-8 h-8" fill="currentColor" height="24" width="24" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.73.73 0 0 0-.529.247c-.182.198-.691.677-.691 1.654s.71 1.916.81 2.049c.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232"></path>
+                </svg>
+                <!-- Pulse animation ring -->
+                <div class="absolute -inset-1 rounded-full border-2 border-green-300 animate-ping opacity-75"></div>
+              </div>
+              <div class="text-left">
+                <p class="text-xs font-semibold leading-tight">¡Agenda aquí una consulta</p>
+                <p class="text-sm font-bold leading-tight">de valoración!</p>
+              </div>
+            </div>
+            <!-- Badge -->
+            <div class="absolute -top-1 -right-1 z-10">
+              <div class="flex h-6 w-6 items-center justify-center">
+                <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-red-400 opacity-75"></span>
+                <span class="relative inline-flex h-5 w-5 items-center justify-center rounded-full bg-red-500 text-xs font-bold text-white">1</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hover Tooltip -->
+        <div class="absolute bottom-full right-0 mb-3 w-72 opacity-0 invisible group-hover/dropdown:opacity-100 group-hover/dropdown:visible transition-all duration-300 z-50">
+          <div class="bg-white rounded-2xl shadow-2xl border-2 border-green-500 p-4 text-sm">
+            <h3 class="font-bold text-gray-900 mb-2 text-base">Sucursales Ciudad de México, México</h3>
+            <div class="space-y-2 text-gray-700 mb-3">
+              <p class="font-semibold text-green-600">• La Raza • Atizapán • Viaducto</p>
+              <p class="text-xs">Martes a sábado de 08:00 a 18:30 horas</p>
+              <p class="font-bold text-green-600 mt-2">55 5989 0607</p>
+            </div>
+            <div class="border-t pt-2">
+              <p class="text-xs text-gray-600 font-semibold">¡Agenda por WhatsApp!</p>
+              <p class="text-xs text-gray-500">Aviso de Privacidad</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Minimal client-side JS for smooth scroll
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+          const href = this.getAttribute('href');
+          // Skip empty hashes
+          if (href === '#' || href === '#top') {
+            e.preventDefault();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            return;
+          }
+          e.preventDefault();
+          const target = document.querySelector(href);
+          if (target) {
+            target.scrollIntoView({ behavior: 'smooth' });
+          }
+        });
+      });
+
+      // Dra. Arce mobile button click handler
+      const draEdithMobile = document.getElementById('dra-edith-mobile');
+      if (draEdithMobile) {
+        draEdithMobile.addEventListener('click', function() {
+          window.open('https://wa.me/525559890607?text=Hola%20Dra.%20Arce,%20tengo%20dudas%20sobre%20mi%20enfermedad%20reumática', '_blank');
+        });
+      }
+
+      // WhatsApp button click handler - opens WhatsApp with agenda message including webpage
+      const whatsappButton = document.getElementById('whatsapp-button');
+      if (whatsappButton) {
+        whatsappButton.addEventListener('click', function() {
+          const message = encodeURIComponent(`Hola, quiero agendar una consulta de valoración.\nVi https://artricenter.com.mx/contactanos/`);
+          window.open(`https://wa.me/525559890607?text=${message}`, '_blank');
+        });
+      }
+    </script>
+  </body>
+</html>

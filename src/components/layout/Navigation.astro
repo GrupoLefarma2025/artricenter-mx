@@ -1,0 +1,75 @@
+---
+import { NavItem } from '@/config/navigation';
+
+interface Props {
+  items: NavItem[];
+  currentPage: string;
+}
+
+const { items, currentPage } = Astro.props;
+
+function isActive(page: string, currentPage: string): boolean {
+  return page === currentPage;
+}
+
+function isExternal(url: string): boolean {
+  return url.startsWith('http://') || url.startsWith('https://');
+}
+
+function getHref(item: NavItem): string {
+  if (isExternal(item.page)) {
+    return item.page;
+  }
+  return item.page + (item.hash || '');
+}
+---
+
+<!-- Desktop Navigation -->
+<nav class="hidden lg:block" aria-label="Navegacion principal">
+  <ul class="flex items-center gap-1">
+    {items.map((item, index) => (
+      <>
+        <li class="relative group">
+          <a
+            href={item.page + (item.hash || '')}
+            class:list={[
+              "inline-flex items-center px-4 py-3 text-sm font-medium transition-all duration-200 rounded-lg",
+              { "text-gray-900": !isActive(item.page, currentPage) },
+              { "text-white": isActive(item.page, currentPage) }
+            ]}
+            style={isActive(item.page, currentPage) ? "background-color: rgb(0, 83, 161)" : ""}
+            data-page={item.page}
+            data-current={currentPage}
+            onmouseenter="if(this.dataset.page !== this.dataset.current) this.style.backgroundColor='rgba(0, 83, 161, 0.2)'"
+            onmouseleave="if(this.dataset.page !== this.dataset.current) this.style.backgroundColor=''; else this.style.backgroundColor='rgb(0, 83, 161)'"
+            aria-current={isActive(item.page, currentPage) ? 'page' : undefined}
+          >
+            {item.label}
+          </a>
+
+          {item.children && item.children.length > 0 && (
+            <div class="absolute left-0 mt-2 w-56 bg-white border border-gray-200 rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+              <div class="py-2">
+                {item.children.map(child => (
+                  <a
+                    href={child.page + (child.hash || '')}
+                    class="block px-4 py-2.5 text-sm font-medium transition-colors text-gray-700 hover:text-white rounded-lg mx-1"
+                    onmouseenter="this.style.backgroundColor='rgb(0, 83, 161)'; this.style.color='white'"
+                    onmouseleave="this.style.backgroundColor=''; this.style.color=''"
+                    target={child.page.startsWith('http') ? '_blank' : undefined}
+                    rel={child.page.startsWith('http') ? 'noopener noreferrer' : undefined}
+                  >
+                    {child.label}
+                  </a>
+                ))}
+              </div>
+            </div>
+          )}
+        </li>
+        {index < items.length - 1 && index !== 1 && (
+          <li class="h-6 w-px bg-gradient-to-b from-transparent via-gray-300 to-transparent" aria-hidden="true"></li>
+        )}
+      </>
+    ))}
+  </ul>
+</nav>

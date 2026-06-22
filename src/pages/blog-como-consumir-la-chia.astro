@@ -1,0 +1,17 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+<Layout title="Cómo Consumir la Chía - Blog Artricenter" description="Artículo sobre cómo consumir la chía para la salud reumática" currentPage="blog">
+  <meta http-equiv="refresh" content="0;url=/blog/" />
+  <div class="flex flex-col items-center justify-center min-h-[60vh] text-center px-4">
+    <p class="text-xl text-gray-700 mb-6">
+      Redirigiendo al Blog<span class="animate-pulse">...</span>
+    </p>
+    <a href="/blog/" class="text-blue-600 hover:text-blue-800 underline transition-colors">
+      Si no eres redirigido automáticamente, haz clic aquí
+    </a>
+  </div>
+  <script>
+    window.location.href = '/blog/';
+  </script>
+</Layout>

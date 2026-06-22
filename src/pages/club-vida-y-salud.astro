@@ -1,0 +1,71 @@
+---
+import Layout from '@/layouts/Layout.astro';
+---
+
+<Layout
+  title="Club Vida y Salud | Artricenter — Programa de Seguimiento para Pacientes Reumatológicos"
+  description="Programa de seguimiento continuo para pacientes con enfermedades reumáticas. Asegura que los resultados del tratamiento se mantengan a largo plazo. Testimonios de pacientes verificadas."
+  currentPage="/club-vida-y-salud"
+  jsonLd={{
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Club Vida y Salud - Artricenter",
+    "description": "Programa de seguimiento para pacientes que completaron el Tratamiento Médico Integral.",
+    "url": "https://artricenter.com.mx/club-vida-y-salud",
+    "mainEntity": {
+      "@type": "MedicalClinic",
+      "name": "Artricenter",
+      "url": "https://artricenter.com.mx"
+    }
+  }}
+>
+  <div class="max-w-7xl mx-auto px-4 py-12">
+    <!-- Club Vida y Salud -->
+    <section id="club-vida-y-salud" class="mb-16">
+      <div class="max-w-4xl mx-auto">
+        <h1 class="sr-only">Club Vida y Salud — Programa de Seguimiento Artricenter</h1>
+        <h2 class="text-3xl md:text-4xl font-bold text-blue-600 mb-6 text-center">Club Vida y Salud</h2>
+
+        <div class="space-y-4 text-gray-700 leading-relaxed text-lg">
+          <p>
+            Club Vida y Salud es un programa dirigido a los pacientes de <strong class="text-blue-600">Artricenter</strong> que terminaron la etapa de Tratamiento Médico Integral y, por lo tanto, obtuvieron una mejoría significativa en su enfermedad reumática.
+          </p>
+
+          <p>
+            El principal objetivo de Club Vida y Salud es asegurar la continuidad de la mejora en la calidad de vida obtenida por nuestros pacientes durante su tratamiento, ya que las enfermedades reumáticas son progresivas y es necesario mantenerlas controladas.
+          </p>
+
+          <p>
+            Este programa asegura a cada uno de los pacientes de <strong class="text-blue-600">Artricenter</strong> que su enfermedad reumática se mantendrá controlada durante toda su vida.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Separator -->
+    <div class="flex items-center justify-center gap-6 my-16">
+      <div class="h-1 w-40 rounded-full" style="background: linear-gradient(to right, transparent, rgb(0, 83, 161))"></div>
+      <div class="flex gap-2">
+        <div class="w-3 h-3 rounded-full animate-pulse" style="background-color: rgb(0, 83, 161)"></div>
+        <div class="w-2 h-2 rounded-full" style="background-color: rgb(83, 175, 49)"></div>
+        <div class="w-2 h-2 rounded-full" style="background-color: rgb(242, 144, 88)"></div>
+      </div>
+      <div class="h-1 w-40 rounded-full" style="background: linear-gradient(to left, transparent, rgb(242, 144, 88))"></div>
+    </div>
+
+    <!-- Testimonios -->
+    <section id="testimonios" class="mb-16">
+      <h2 class="text-3xl md:text-4xl font-bold text-blue-600 mb-12 text-center">Testimonios</h2>
+      
+      <div class="flex flex-col items-center justify-center py-16 px-4">
+        <div class="bg-gray-100 rounded-2xl p-12 text-center max-w-lg">
+          <svg class="w-20 h-20 mx-auto text-gray-400 mb-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
+          </svg>
+          <h3 class="text-2xl font-bold text-gray-700 mb-3">Sección en construcción</h3>
+          <p class="text-gray-500">Estamos trabajando para traerte los mejores testimonios de nuestros pacientes. Vuelve pronto.</p>
+        </div>
+      </div>
+    </section>
+  </div>
+</Layout>

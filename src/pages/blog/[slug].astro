@@ -1,0 +1,269 @@
+﻿---
+import Layout from '@/layouts/Layout.astro';
+import { fetchPosts } from '@/lib/blogApi';
+
+export async function getStaticPaths() {
+  try {
+    const posts = await fetchPosts(1, 100);
+    return posts.map((post: any) => ({
+      params: { slug: post.slug },
+    }));
+  } catch (error) {
+    console.error('Failed to fetch posts for static paths:', error);
+    return [];
+  }
+}
+
+const { slug } = Astro.params;
+---
+
+<Layout
+  title="Cargando artículo... | Blog Artricenter"
+  description="Artículo sobre salud reumática en el blog de Artricenter"
+  currentPage="/blog"
+>
+  <div class="max-w-4xl mx-auto px-4 py-12">
+    <!-- Back Link -->
+    <div class="mb-8">
+      <a
+        href="/blog"
+        class="inline-flex items-center gap-2 text-sm font-semibold transition-colors hover:underline"
+        style="color: rgb(0, 83, 161)"
+      >
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
+        </svg>
+        Volver al blog
+      </a>
+    </div>
+
+    <!-- Loading State -->
+    <div id="loading-state">
+      <div class="animate-pulse">
+        <div class="h-8 rounded mb-4 w-3/4" style="background-color: rgba(0, 83, 161, 0.15)"></div>
+        <div class="flex gap-2 mb-8">
+          <div class="h-6 rounded-full w-20" style="background-color: rgba(83, 175, 49, 0.15)"></div>
+          <div class="h-6 rounded-full w-16" style="background-color: rgba(242, 144, 88, 0.15)"></div>
+        </div>
+        <div class="h-64 rounded-2xl mb-8" style="background-color: rgba(0, 83, 161, 0.08)"></div>
+        <div class="space-y-4">
+          <div class="h-4 rounded w-full" style="background-color: rgba(0, 83, 161, 0.08)"></div>
+          <div class="h-4 rounded w-full" style="background-color: rgba(0, 83, 161, 0.08)"></div>
+          <div class="h-4 rounded w-5/6" style="background-color: rgba(0, 83, 161, 0.08)"></div>
+          <div class="h-4 rounded w-full" style="background-color: rgba(0, 83, 161, 0.08)"></div>
+          <div class="h-4 rounded w-4/5" style="background-color: rgba(0, 83, 161, 0.08)"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Error/404 State -->
+    <div id="error-state" class="hidden">
+      <div class="text-center py-16">
+        <div class="mb-8">
+          <svg class="mx-auto w-24 h-24" style="color: rgb(242, 144, 88)" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z"/>
+          </svg>
+        </div>
+        <h1 class="text-4xl md:text-5xl font-bold mb-4" style="color: rgb(0, 83, 161)">Artículo no encontrado</h1>
+        <p class="text-lg text-gray-600 leading-relaxed mb-8" id="error-message">
+          El artículo que buscas no existe o ha sido eliminado.
+        </p>
+        <a
+          href="/blog"
+          class="inline-flex items-center gap-3 text-white font-semibold px-8 py-4 rounded-xl shadow-lg hover:shadow-xl transition-all duration-200 transform hover:-translate-y-1"
+          style="background-color: rgb(0, 83, 161)"
+          onmouseenter="this.style.backgroundColor='rgb(0, 70, 135)'"
+          onmouseleave="this.style.backgroundColor='rgb(0, 83, 161)'"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
+          </svg>
+          <span>Ver todos los artículos</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Post Content -->
+    <article id="post-content" class="hidden">
+      <header class="mb-8">
+        <div class="flex flex-wrap gap-2 mb-4" id="post-categories"></div>
+        <h1 id="post-title" class="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 leading-tight" style="color: rgb(0, 83, 161)"></h1>
+        <div class="flex flex-wrap items-center gap-4 text-sm text-gray-500">
+          <div class="flex items-center gap-2">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
+            </svg>
+            <span id="post-author"></span>
+          </div>
+          <div class="flex items-center gap-2">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+            </svg>
+            <span id="post-date"></span>
+          </div>
+        </div>
+      </header>
+
+      <div id="post-image-container" class="hidden mb-8">
+        <img
+          id="post-image"
+          alt=""
+          class="w-full h-auto rounded-2xl shadow-lg"
+        />
+      </div>
+
+      <div class="flex items-center justify-center gap-6 my-12">
+        <div class="h-1 w-40 rounded-full" style="background: linear-gradient(to right, transparent, rgb(0, 83, 161))"></div>
+        <div class="flex gap-2">
+          <div class="w-3 h-3 rounded-full animate-pulse" style="background-color: rgb(83, 175, 49)"></div>
+          <div class="w-2 h-2 rounded-full" style="background-color: rgb(0, 83, 161)"></div>
+          <div class="w-2 h-2 rounded-full" style="background-color: rgb(242, 144, 88)"></div>
+        </div>
+        <div class="h-1 w-40 rounded-full" style="background: linear-gradient(to left, transparent, rgb(242, 144, 88))"></div>
+      </div>
+
+      <div
+        id="post-body"
+        class="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600 prose-a:hover:text-blue-800 prose-img:rounded-xl prose-img:shadow-lg"
+      ></div>
+
+      <div class="flex items-center justify-center gap-6 my-12">
+        <div class="h-1 w-40 rounded-full" style="background: linear-gradient(to right, transparent, rgb(0, 83, 161))"></div>
+        <div class="flex gap-2">
+          <div class="w-3 h-3 rounded-full animate-pulse" style="background-color: rgb(242, 144, 88)"></div>
+          <div class="w-2 h-2 rounded-full" style="background-color: rgb(0, 83, 161)"></div>
+          <div class="w-2 h-2 rounded-full" style="background-color: rgb(83, 175, 49)"></div>
+        </div>
+        <div class="h-1 w-40 rounded-full" style="background: linear-gradient(to left, transparent, rgb(242, 144, 88))"></div>
+      </div>
+
+      <div class="text-center">
+        <a
+          href="/blog"
+          class="inline-flex items-center gap-3 text-white font-semibold px-8 py-4 rounded-xl shadow-lg hover:shadow-xl transition-all duration-200 transform hover:-translate-y-1"
+          style="background-color: rgb(0, 83, 161)"
+          onmouseenter="this.style.backgroundColor='rgb(0, 70, 135)'"
+          onmouseleave="this.style.backgroundColor='rgb(0, 83, 161)'"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
+          </svg>
+          <span>Ver más artículos</span>
+        </a>
+      </div>
+    </article>
+  </div>
+
+  <script define:vars={{ slug }}>
+    import { fetchPostBySlug, getImageUrl, parseCategories } from '@/lib/blogApi';
+
+    const loadingState = document.getElementById('loading-state');
+    const errorState = document.getElementById('error-state');
+    const postContent = document.getElementById('post-content');
+    const errorMessage = document.getElementById('error-message');
+
+    const postTitle = document.getElementById('post-title');
+    const postBody = document.getElementById('post-body');
+    const postImage = document.getElementById('post-image');
+    const postImageContainer = document.getElementById('post-image-container');
+    const postAuthor = document.getElementById('post-author');
+    const postDate = document.getElementById('post-date');
+    const postCategories = document.getElementById('post-categories');
+
+    function formatDate(dateString: string): string {
+      const date = new Date(dateString);
+      return date.toLocaleDateString('es-MX', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+      });
+    }
+
+    function showLoading() {
+      loadingState?.classList.remove('hidden');
+      errorState?.classList.add('hidden');
+      postContent?.classList.add('hidden');
+    }
+
+    function showError(message: string) {
+      loadingState?.classList.add('hidden');
+      errorState?.classList.remove('hidden');
+      postContent?.classList.add('hidden');
+      if (errorMessage) {
+        errorMessage.textContent = message;
+      }
+    }
+
+    function showPost() {
+      loadingState?.classList.add('hidden');
+      errorState?.classList.add('hidden');
+      postContent?.classList.remove('hidden');
+    }
+
+    async function loadPost() {
+      if (!slug) {
+        showError('No se especificó un artículo para cargar.');
+        return;
+      }
+
+      showLoading();
+      try {
+        const post = await fetchPostBySlug(slug);
+
+        if (!post) {
+          showError('El artículo que buscas no existe o ha sido eliminado.');
+          return;
+        }
+
+        // Update page title
+        document.title = `${post.title} | Blog Artricenter`;
+
+        // Update meta description
+        const metaDesc = document.querySelector('meta[name="description"]');
+        if (metaDesc) {
+          metaDesc.setAttribute('content', post.excerpt || `Artículo sobre ${post.title} en el blog de Artricenter`);
+        }
+
+        // Render categories
+        if (postCategories) {
+          const categories = parseCategories(post.categoriesJson || '[]');
+          postCategories.innerHTML = categories.map((cat: string, i: number) => {
+            const colors = [
+              'background-color: rgb(0, 83, 161)',
+              'background-color: rgb(83, 175, 49)',
+              'background-color: rgb(242, 144, 88)'
+            ];
+            return `<span class="text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full text-white" style="${colors[i % colors.length]}">${cat}</span>`;
+          }).join('');
+        }
+
+        // Render title
+        if (postTitle) postTitle.textContent = post.title;
+
+        // Render image
+        const imageUrl = getImageUrl(post.featuredImage);
+        if (imageUrl && postImage && postImageContainer) {
+          postImage.src = imageUrl;
+          postImage.alt = post.title;
+          postImageContainer.classList.remove('hidden');
+        } else if (postImageContainer) {
+          postImageContainer.classList.add('hidden');
+        }
+
+        // Render author and date
+        if (postAuthor) postAuthor.textContent = post.authorName || 'Artricenter';
+        if (postDate) postDate.textContent = formatDate(post.publishedAt);
+
+        // Render content (HTML)
+        if (postBody) postBody.innerHTML = post.content || '';
+
+        showPost();
+      } catch (error) {
+        const message = error instanceof Error ? error.message : 'Error desconocido al cargar el artículo';
+        showError(message);
+      }
+    }
+
+    loadPost();
+  </script>
+</Layout>

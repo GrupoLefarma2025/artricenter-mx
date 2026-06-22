@@ -1,0 +1,18 @@
+---
+import Layout from '@/layouts/Layout.astro';
+---
+
+<Layout
+  title="Contacto - Artricenter"
+  description="Contacta a Artricenter"
+  currentPage="/contactanos"
+>
+  <meta http-equiv="refresh" content="0;url=/contactanos/" />
+  <div class="flex items-center justify-center min-h-screen">
+    <div class="text-center p-8">
+      <p class="text-xl mb-4">Redirigiendo a Contactanos...</p>
+      <script is:inline>window.location.href = '/contactanos/';</script>
+      <a href="/contactanos/" class="text-blue-600 underline">Si no eres redirigido automáticamente, haz clic aquí</a>
+    </div>
+  </div>
+</Layout>
