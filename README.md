@@ -221,12 +221,22 @@ npm run test
 
 ---
 
-## 12. Deuda técnica conocida
+## 12. Optimización de imágenes
 
-- `tailwind.config.mjs`: vestigial de Tailwind v3, no lo usa v4. Eliminable.
-- `@astrojs/vercel`: instalado pero no conectado en `astro.config.mjs`. Eliminable si se confirma que el deploy seguirá siendo FTP.
-- `fix-paths.js`: actualmente no-op.
-- Existen assets sin referenciar en `public/assets/images/` (ej. logos legacy). Limpiar con cuidado, verificando que ninguna página los use.
+Las fotos del sitio se sirven en formatos modernos (`.avif` para fotos, `.webp` para
+logos/CTA). Para convertir una imagen al preset usado por el equipo:
+
+```bash
+# npm run img:avif -- <entrada> <salida> [ancho-opcional]
+npm run img:avif -- public/assets/images/team/foto.jpg public/assets/images/team/foto.avif
+
+# con downscale (recomendado si el origen supera ~1000px):
+npm run img:avif -- entrada.jpg salida.avif 800
+```
+
+El script (`scripts/to-avif.mjs`) usa `sharp` (ya en `devDependencies`) con
+`quality: 55` y `effort: 6`. Tras convertir, borra el original pesado y referencia
+el `.avif` desde el HTML. Ejemplo real: `dr-edith.jpg` (145 KB) → `dr-edith.avif` (38 KB).
 
 ---
 

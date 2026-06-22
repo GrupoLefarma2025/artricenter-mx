@@ -1,17 +1,31 @@
 ﻿---
 import Layout from '@/layouts/Layout.astro';
-import { fetchPosts } from '@/lib/blogApi';
+// NOTE: fetchPosts import disabled together with the build-time prerender below.
+// import { fetchPosts } from '@/lib/blogApi';
 
+// getStaticPaths runs at BUILD TIME. Prebuilding one HTML file per post requires
+// hitting the blog API (PUBLIC_API_URL), but that env var is not configured yet,
+// so the fetch resolves to `undefined/api/blog/posts` and FAILS the static build.
+//
+// Disabled on purpose (not deleted): the route still compiles because we return [].
+// No slug pages are prebuilt; each article is fetched and rendered CLIENT-SIDE by
+// the <script> below using fetchPostBySlug, which already handles loading/404/error.
+//
+// TO RE-ENABLE prerendering when the API is live:
+//   1. Set PUBLIC_API_URL in .env
+//   2. Restore the fetchPosts import above
+//   3. Replace the `return []` with the commented fetch block below
 export async function getStaticPaths() {
-  try {
-    const posts = await fetchPosts(1, 100);
-    return posts.map((post: any) => ({
-      params: { slug: post.slug },
-    }));
-  } catch (error) {
-    console.error('Failed to fetch posts for static paths:', error);
-    return [];
-  }
+  // try {
+  //   const posts = await fetchPosts(1, 100);
+  //   return posts.map((post: any) => ({
+  //     params: { slug: post.slug },
+  //   }));
+  // } catch (error) {
+  //   console.error('Failed to fetch posts for static paths:', error);
+  //   return [];
+  // }
+  return [];
 }
 
 const { slug } = Astro.params;

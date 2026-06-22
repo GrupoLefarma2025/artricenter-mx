@@ -183,8 +183,8 @@ import { navConfig } from '@/config/navigation';
         <!-- Conector 1 → 2 -->
         <div class="timeline-connector timeline-connector--right" aria-hidden="true">
           <svg viewBox="0 0 600 50" preserveAspectRatio="none">
-            <path d="M230,5 Q300,45 370,45" fill="none" stroke="currentColor" stroke-width="2.5" stroke-dasharray="6,4" vector-effect="non-scaling-stroke"/>
-            <polygon points="370,45 363,40 363,50" fill="currentColor"/>
+            <path class="timeline-connector-path" d="M230,5 Q300,45 370,45" fill="none" stroke="currentColor" stroke-width="2.5" stroke-dasharray="6,4" vector-effect="non-scaling-stroke"/>
+            <polygon class="timeline-arrowhead" points="370,45 363,40 363,50" fill="currentColor"/>
           </svg>
         </div>
 
@@ -208,8 +208,8 @@ import { navConfig } from '@/config/navigation';
         <!-- Conector 2 → 3 -->
         <div class="timeline-connector timeline-connector--left" aria-hidden="true">
           <svg viewBox="0 0 600 50" preserveAspectRatio="none">
-            <path d="M370,5 Q300,45 230,45" fill="none" stroke="currentColor" stroke-width="2.5" stroke-dasharray="6,4" vector-effect="non-scaling-stroke"/>
-            <polygon points="230,45 237,40 237,50" fill="currentColor"/>
+            <path class="timeline-connector-path" d="M370,5 Q300,45 230,45" fill="none" stroke="currentColor" stroke-width="2.5" stroke-dasharray="6,4" vector-effect="non-scaling-stroke"/>
+            <polygon class="timeline-arrowhead" points="230,45 237,40 237,50" fill="currentColor"/>
           </svg>
         </div>
 
@@ -233,8 +233,8 @@ import { navConfig } from '@/config/navigation';
         <!-- Conector 3 → 4 -->
         <div class="timeline-connector timeline-connector--right" aria-hidden="true">
           <svg viewBox="0 0 600 50" preserveAspectRatio="none">
-            <path d="M230,5 Q300,45 370,45" fill="none" stroke="currentColor" stroke-width="2.5" stroke-dasharray="6,4" vector-effect="non-scaling-stroke"/>
-            <polygon points="370,45 363,40 363,50" fill="currentColor"/>
+            <path class="timeline-connector-path" d="M230,5 Q300,45 370,45" fill="none" stroke="currentColor" stroke-width="2.5" stroke-dasharray="6,4" vector-effect="non-scaling-stroke"/>
+            <polygon class="timeline-arrowhead" points="370,45 363,40 363,50" fill="currentColor"/>
           </svg>
         </div>
 
@@ -832,6 +832,26 @@ import { navConfig } from '@/config/navigation';
       color: #0053A1;
       font-size: 0.9rem;
       line-height: 1;
+      will-change: transform;
+    }
+
+    /* ▶ (lado izquierdo) empuja hacia el título; ◀ (lado derecho) empuja en sentido contrario */
+    .timeline-header-line:first-of-type .timeline-header-arrow {
+      animation: arrow-nudge-right 1.8s cubic-bezier(0.25, 1, 0.5, 1) infinite alternate;
+    }
+
+    .timeline-header-line:last-of-type .timeline-header-arrow {
+      animation: arrow-nudge-left 1.8s cubic-bezier(0.25, 1, 0.5, 1) infinite alternate;
+    }
+
+    @keyframes arrow-nudge-right {
+      from { transform: translateX(0); opacity: 0.65; }
+      to   { transform: translateX(4px); opacity: 1; }
+    }
+
+    @keyframes arrow-nudge-left {
+      from { transform: translateX(0); opacity: 0.65; }
+      to   { transform: translateX(-4px); opacity: 1; }
     }
 
     .timeline-container {
@@ -891,6 +911,39 @@ import { navConfig } from '@/config/navigation';
 
     .timeline-connector:nth-of-type(6) {
       color: #00BCD4;
+    }
+
+    /* Puntos del trazo "fluyen" hacia la siguiente sucursal (sensación de avance) */
+    .timeline-connector-path {
+      animation: dash-flow 0.9s linear infinite;
+    }
+
+    @keyframes dash-flow {
+      to { stroke-dashoffset: -10; }
+    }
+
+    /* La punta de flecha late suavemente para señalar el avance.
+       Siempre visible: la animación realza, no condiciona la visibilidad. */
+    .timeline-arrowhead {
+      transform-box: fill-box;
+      transform-origin: center;
+      animation: arrowhead-pulse 1.8s cubic-bezier(0.25, 1, 0.5, 1) infinite;
+    }
+
+    @keyframes arrowhead-pulse {
+      0%, 100% { transform: scale(1); }
+      50%      { transform: scale(1.25); }
+    }
+
+    /* Accesibilidad: sin movimiento, las flechas quedan estáticas y visibles */
+    @media (prefers-reduced-motion: reduce) {
+      .timeline-connector-path,
+      .timeline-arrowhead,
+      .timeline-header-arrow {
+        animation: none !important;
+      }
+      .timeline-arrowhead { transform: none !important; }
+      .timeline-header-arrow { opacity: 1 !important; transform: none !important; }
     }
 
     /* Cada fila del timeline (3 columnas: contenido | círculo | vacío) */
