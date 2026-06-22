@@ -22,8 +22,8 @@ Producción: <https://artricenter.com.mx>
 
 - El sitio es **100% estático**. No hay servidor en runtime: todo se resuelve en `astro build` y se sirve como HTML/CSS/JS plano.
 - El contenido del **blog se obtiene en _build time_** desde una API externa (ver §6). Si la API cambia o no responde, hay que reconstruir el sitio.
-- Tailwind v4 **no usa `tailwind.config.mjs`** para escanear clases; el archivo presente es vestigial (heredado de v3) y puede eliminarse. La configuración real de Tailwind v4 vive en `src/styles/global.css` con `@import "tailwindcss";`.
-- `@astrojs/vercel` está en `dependencies` pero **NO está conectado** en `astro.config.mjs`. El despliegue real es por **FTP** (ver §7). Esa dependencia es removible.
+- Tailwind v4 se configura **CSS-first** dentro de `src/styles/global.css` (`@import "tailwindcss"`) a través del plugin `@tailwindcss/vite`. **No existe `tailwind.config.mjs`** (v4 no lo necesita).
+- El despliegue es **100% por FTP** sobre un hosting Apache (ver §7). No hay adapter SSR (`@astrojs/vercel` ni ningún otro).
 
 ---
 
@@ -54,6 +54,7 @@ npm run build      # Genera el sitio estático en dist/
 npm run preview    # Sirve dist/ localmente para revisar la build
 npm run test       # Ejecuta los tests con Vitest
 npm run astro      # CLI de Astro (astro add, astro check, etc.)
+npm run img:avif   # Convierte una imagen a AVIF (ver §8). Uso: npm run img:avif -- <in> <out> [ancho]
 ```
 
 ---
@@ -84,11 +85,11 @@ npm run astro      # CLI de Astro (astro add, astro check, etc.)
 │   ├── pages/                  # Rutas (file-based routing)
 │   └── styles/                 # global.css (Tailwind + fuentes + overrides)
 ├── tests/                      # Tests adicionales (seo-structure.test.js)
-├── astro.config.mjs            # Configuración de Astro
+├── scripts/                    # Scripts Node (to-avif.mjs → conversión AVIF)
+├── astro.config.mjs            # Configuración de Astro (static + sitemap + Tailwind)
 ├── tsconfig.json               # TS strict + alias @/*
 ├── .htaccess                   # Reglas Apache (HTTPS, caché, 301 legacy)
 ├── deploy.py / deploy_ftp.py   # Scripts de despliegue por FTP
-├── fix-paths.js                # Post-build de rutas (actualmente no-op)
 └── .env.example                # Plantilla de variables de entorno
 ```
 
@@ -116,11 +117,55 @@ npm run astro      # CLI de Astro (astro add, astro check, etc.)
 - No uses `any`. Si la API externa trae snake_case, mapéalo a camelCase en una capa (ver `mapApiPost` en `blogApi.ts`).
 
 ### Estilos (guía de estilo)
-- **Utility-first con Tailwind v4.** Estiliza con clases utilitarias en el markup; evita CSS suelto.
-- CSS global **solo** en `src/styles/global.css` (fuentes, `scroll-behavior`, fixes de `sticky`). No agregues hojas de estilo nuevas salvo necesidad real.
-- Estilos puntuales de un componente van en su bloque `<style>` (Astro los aísla con scope automático). Para apuntar a un ancestro global usa `:global(...)`.
-- Tipografía del sitio: **Atkinson Hyperlegible** (alta legibilidad, self-hosted en `public/assets/fonts/`, `font-display: swap`).
-- Paleta principal (de marca): azul `rgb(0, 83, 161)`, verde `rgb(83, 175, 49)`, naranja `rgb(242, 144, 88)`.
+
+El sitio usa **Tailwind v4 (CSS-first)** para el 90% del estilizado, más una capa mínima de CSS global y tres colores de marca aplicados inline. No hay capa de design tokens (`@theme` ni variables CSS): los colores de marca viven como literales `rgb()` en el markup.
+
+#### Paleta de marca
+
+| Token | RGB | Hex | Uso canónico |
+|---|---|---|---|
+| Azul primario | `rgb(0, 83, 161)` | `#0053A1` | Color principal. Headings (`h2`/`h3`), bordes, gradientes, meta `theme-color`, sucursal **La Raza** |
+| Verde | `rgb(83, 175, 49)` | `#53AF31` | Acento secundario. Sucursal **Atizapán**, categoría _Nutrición_ |
+| Naranja | `rgb(242, 144, 88)` | `#F29058` | Acento cálido. Sucursal **Viaducto**, categoría _Salud_ |
+
+Aplicación: **inline** (`style="color: rgb(0, 83, 161)"`), no clases Tailwind — ver `src/pages/blog.astro` y `src/components/sections/Sucursales.astro`. Regla: reutiliza estos tres RGB; no inventes tonos nuevos de marca.
+
+#### Colores funcionales (Tailwind, sin personalizar)
+
+| Rol | Clases Tailwind | Dónde |
+|---|---|---|
+| WhatsApp / confirmación | `green-500` / `green-600` | CTA flotante derecho (`Layout.astro`) |
+| Dra. Arce (consulta) | `pink-500` / `pink-600` | CTA flotante izquierdo + dropdown |
+| Texto base / fondo | `text-gray-900` / `bg-white` | `<body>` en `Layout.astro` |
+| Links y navegación | `blue-600` / `blue-700` | `Header.astro`, `Navigation.astro` |
+
+#### Tipografía
+
+- **Familia:** Atkinson Hyperlegible — self-hosted en `public/assets/fonts/` (4 TTF: Regular, Bold, Italic, BoldItalic). Elegida por legibilidad (diseñada para baja visión), coherente con un sitio clínico.
+- **Pesos:** solo `400` (regular) y `700` (bold). No usar pesos intermedios.
+- **Carga:** `font-display: swap` en cada `@font-face` (`global.css`) + `<link rel="preload">` del Regular en `Layout.astro` para evitar FOIT.
+- Se aplica vía inline style en `<body>` (`font-family: 'Atkinson Hyperlegible', sans-serif`), **no** por una clase de Tailwind.
+
+#### Movimiento y microinteracciones
+
+- **`.cta-attn`** (`global.css`): animación periódica (wiggle + glow) en los CTA flotantes para atraer la atención **sin** movimiento constante. Se compone de dos keyframes: `cta-attn` (5.5s) y `cta-glow` (2.4s).
+- **`--cta-glow`**: variable CSS por botón para el color del glow (ej. el CTA de WhatsApp la setea en `rgba(34, 197, 94, 0.6)`).
+- **Accesibilidad:** se respeta `@media (prefers-reduced-motion: reduce)` → desactiva `.cta-attn`.
+- **Smooth scroll:** `scroll-behavior: smooth` (global) + handler JS en `Layout.astro` para anclas `#`.
+
+#### Layout y estructura visual
+
+- **Offset de anclas:** `scroll-padding-top: 5rem` compensa el header sticky al navegar a `#secciones`.
+- **Header:** sticky a `top:0; z-index:9999`. Dos capas — el logo desktop **no** es sticky (se desplaza), la barra de navegación sí; en móvil el header completo es sticky. Un _logo mini_ aparece al hacer scroll (`Header.astro`).
+- **CTAs flotantes:** contenedor `fixed bottom-0` con dos anclas — Dra. Arce (izq) y WhatsApp (der). Cada uno tiene variante _mobile compact_ / _desktop full_ separada por el breakpoint `sm:`.
+- **Textura papel:** overlay SVG `fractalNoise` al 3% de opacidad con `mix-blend-mode: multiply`, declarado en `Layout.astro` (`fixed`, `pointer-events-none`). Es decorativa.
+
+#### Convenciones de Tailwind v4
+
+- **Utility-first:** estiliza con clases en el markup; evita CSS suelto.
+- **CSS global** _solo_ en `src/styles/global.css` (`@font-face`, `scroll-*`, fixes de `sticky`, keyframes de `.cta-attn`). No agregues hojas nuevas salvo necesidad real.
+- **Estilos puntuales** de un componente → su bloque `<style>` (Astro aplica scope automático). Para apuntar a un ancestro global usa `:global(...)`.
+- **No existe `tailwind.config.mjs`** — v4 se configura dentro del CSS.
 
 ### Idioma
 - **Contenido y textos de UI: español** (es un sitio clínico en México).
@@ -168,28 +213,27 @@ python deploy_ftp.py    # variante alternativa
   - Redirección forzada a **HTTPS** y al dominio canónico.
   - Cabeceras **no-cache** (para purgar caché del navegador).
   - Redirecciones **301 legacy** de URLs antiguas.
-- `fix-paths.js` es un post-build de rutas que **hoy no hace nada** (el sitio vive en la raíz `/`). Existe por si en el futuro se sirve desde un subdirectorio.
 
 ---
 
-## 8. Optimización de imágenes (obligatorio mantener)
+## 8. Optimización de imágenes
 
-Las imágenes deben servirse en **WebP o AVIF**, no PNG/JPEG, para reducir el peso de carga. Hay `sharp` disponible (viene con Astro) para convertir.
-
-Ejemplo de conversión de un asset a WebP:
+Las imágenes se sirven en formatos modernos: **AVIF para fotos** y **WebP para logos/CTA**. Nunca PNG/JPEG pesados. La herramienta canónica es el script `scripts/to-avif.mjs` (usa `sharp`, ya en `devDependencies`).
 
 ```bash
-node -e "require('sharp')('public/assets/images/ruta/origen.png')
-  .resize({ height: 240 })           // ajusta al tamaño real de render (retina ~2x)
-  .webp({ quality: 82 })
-  .toFile('public/assets/images/ruta/origen.webp')
-  .then(i => console.log((i.size/1024).toFixed(1)+'KB'))"
+# npm run img:avif -- <entrada> <salida> [ancho-opcional]
+npm run img:avif -- public/assets/images/team/foto.jpg public/assets/images/team/foto.avif
+
+# con downscale (recomendado si el origen supera ~1000px):
+npm run img:avif -- entrada.jpg salida.avif 800
 ```
 
+Preset del script: `quality: 55`, `effort: 6`. Ejemplo real: `dr-edith.jpg` (145 KB) → `dr-edith.avif` (38 KB).
+
 Reglas:
-- No subas un PNG/JPEG de 1500px si en pantalla se ve a 96px. Redimensiona al tamaño real (×2 para retina).
-- Tras convertir, actualiza las referencias en `src/` (`.png`/`.jpeg` → `.webp`).
-- Mantén el `.jpeg` original solo donde una URL pública externa lo exija (ej. el `logo` en el JSON-LD de `Layout.astro`).
+- No subas un PNG/JPEG de 1500px si en pantalla se ve a 96px. Redimensiona al tamaño real de render (×2 para retina); el argumento `ancho` del script hace el downscale.
+- Tras convertir, **borra el original pesado** y actualiza las referencias en `src/` (`.jpg`/`.png` → `.avif`/`.webp`).
+- Mantén el `.jpeg` original **solo** donde una URL pública externa lo exija (ej. el `logo` del JSON-LD en `Layout.astro`, que apunta a `brand/logo.jpeg`).
 
 ---
 
@@ -218,25 +262,6 @@ npm run test
 - `.env` está en `.gitignore`. **Nunca** subas credenciales (FTP, API) al repositorio.
 - Para rotar la contraseña FTP: actualízala en el `.env` local y en el panel del hosting.
 - Variables `PUBLIC_*` se exponen al cliente en el bundle: no pongas secretos ahí, solo URLs públicas.
-
----
-
-## 12. Optimización de imágenes
-
-Las fotos del sitio se sirven en formatos modernos (`.avif` para fotos, `.webp` para
-logos/CTA). Para convertir una imagen al preset usado por el equipo:
-
-```bash
-# npm run img:avif -- <entrada> <salida> [ancho-opcional]
-npm run img:avif -- public/assets/images/team/foto.jpg public/assets/images/team/foto.avif
-
-# con downscale (recomendado si el origen supera ~1000px):
-npm run img:avif -- entrada.jpg salida.avif 800
-```
-
-El script (`scripts/to-avif.mjs`) usa `sharp` (ya en `devDependencies`) con
-`quality: 55` y `effort: 6`. Tras convertir, borra el original pesado y referencia
-el `.avif` desde el HTML. Ejemplo real: `dr-edith.jpg` (145 KB) → `dr-edith.avif` (38 KB).
 
 ---
 

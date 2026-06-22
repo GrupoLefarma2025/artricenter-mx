@@ -40,7 +40,7 @@ import { navConfig } from '@/config/navigation';
     <!-- Carousel de banners -->
     <div class="max-w-5xl mx-auto mb-16 rounded-lg shadow-lg overflow-hidden relative" id="hero-carousel">
       <div class="carousel-track" id="carousel-track">
-        <div class="carousel-slide">
+        <div class="carousel-slide is-active">
           <img src="/assets/images/hero/banner-1.webp" alt="Artricenter - Especialistas en enfermedades reumáticas" width="807" height="234" fetchpriority="high" decoding="async" />
         </div>
         <div class="carousel-slide">
@@ -182,9 +182,9 @@ import { navConfig } from '@/config/navigation';
 
         <!-- Conector 1 → 2 -->
         <div class="timeline-connector timeline-connector--right" aria-hidden="true">
-          <svg viewBox="0 0 600 50" preserveAspectRatio="none">
-            <path class="timeline-connector-path" d="M230,5 Q300,45 370,45" fill="none" stroke="currentColor" stroke-width="2.5" stroke-dasharray="6,4" vector-effect="non-scaling-stroke"/>
-            <polygon class="timeline-arrowhead" points="370,45 363,40 363,50" fill="currentColor"/>
+          <svg viewBox="100 5 600 50" preserveAspectRatio="none">
+            <path class="timeline-connector-path" d="M230,5 Q300,45 470,105" fill="none" stroke="currentColor" stroke-width="2.5" stroke-dasharray="6,4" vector-effect="non-scaling-stroke"/>
+            <polygon class="timeline-arrowhead" points="470,100 455,94 455,106" fill="currentColor"/>
           </svg>
         </div>
 
@@ -207,9 +207,9 @@ import { navConfig } from '@/config/navigation';
 
         <!-- Conector 2 → 3 -->
         <div class="timeline-connector timeline-connector--left" aria-hidden="true">
-          <svg viewBox="0 0 600 50" preserveAspectRatio="none">
-            <path class="timeline-connector-path" d="M370,5 Q300,45 230,45" fill="none" stroke="currentColor" stroke-width="2.5" stroke-dasharray="6,4" vector-effect="non-scaling-stroke"/>
-            <polygon class="timeline-arrowhead" points="230,45 237,40 237,50" fill="currentColor"/>
+          <svg viewBox="100 5 600 50" preserveAspectRatio="none">
+            <path class="timeline-connector-path" d="M470,5 Q340,45 230,105" fill="none" stroke="currentColor" stroke-width="2.5" stroke-dasharray="6,4" vector-effect="non-scaling-stroke"/>
+            <polygon class="timeline-arrowhead" points="230,100 245,94 245,106" fill="currentColor"/>
           </svg>
         </div>
 
@@ -232,9 +232,9 @@ import { navConfig } from '@/config/navigation';
 
         <!-- Conector 3 → 4 -->
         <div class="timeline-connector timeline-connector--right" aria-hidden="true">
-          <svg viewBox="0 0 600 50" preserveAspectRatio="none">
-            <path class="timeline-connector-path" d="M230,5 Q300,45 370,45" fill="none" stroke="currentColor" stroke-width="2.5" stroke-dasharray="6,4" vector-effect="non-scaling-stroke"/>
-            <polygon class="timeline-arrowhead" points="370,45 363,40 363,50" fill="currentColor"/>
+          <svg viewBox="100 5 600 50" preserveAspectRatio="none">
+            <path class="timeline-connector-path" d="M230,5 Q300,45 470,105" fill="none" stroke="currentColor" stroke-width="2.5" stroke-dasharray="6,4" vector-effect="non-scaling-stroke"/>
+            <polygon class="timeline-arrowhead" points="470,100 455,94 455,106" fill="currentColor"/>
           </svg>
         </div>
 
@@ -734,7 +734,7 @@ import { navConfig } from '@/config/navigation';
 
     .carousel-track {
       display: flex;
-      transition: transform 0.5s ease-in-out;
+      transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     .carousel-slide {
@@ -742,12 +742,24 @@ import { navConfig } from '@/config/navigation';
       display: flex;
       justify-content: center;
       align-items: center;
+      overflow: hidden;
     }
 
     .carousel-slide img {
       width: 100%;
       height: auto;
       display: block;
+    }
+
+    /* Ken Burns: the active slide image slowly zooms while it dwells,
+       giving the carousel life beyond the flat horizontal slide. */
+    @keyframes carousel-kenburns {
+      from { transform: scale(1); }
+      to   { transform: scale(1.08); }
+    }
+
+    .carousel-slide.is-active img {
+      animation: carousel-kenburns 6s ease-out forwards;
     }
 
     .carousel-btn {
@@ -767,6 +779,11 @@ import { navConfig } from '@/config/navigation';
 
     .carousel-btn:hover {
       background: rgba(0, 83, 161, 0.9);
+      transform: translateY(-50%) scale(1.12);
+    }
+
+    .carousel-btn:active {
+      transform: translateY(-50%) scale(0.95);
     }
 
     .carousel-prev {
@@ -793,11 +810,23 @@ import { navConfig } from '@/config/navigation';
       border-radius: 50%;
       background: rgba(255, 255, 255, 0.5);
       cursor: pointer;
-      transition: background 0.3s;
+      transition: background 0.3s, transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s;
+    }
+
+    .carousel-dot:hover {
+      transform: scale(1.2);
+      background: rgba(255, 255, 255, 0.85);
     }
 
     .carousel-dot.active {
       background: rgb(0, 83, 161);
+      transform: scale(1.35);
+      box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.9);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .carousel-track { transition: none; }
+      .carousel-slide.is-active img { animation: none; }
     }
 
 
@@ -817,18 +846,32 @@ import { navConfig } from '@/config/navigation';
     .timeline-header-line {
       display: flex;
       align-items: center;
-      gap: 0.5rem;
       flex: 1;
-      max-width: 180px;
-      min-width: 60px;
+      max-width: 280px;
+      min-width: 80px;
+    }
+
+    .timeline-header-arrow {
+      flex-shrink: 0;
+      width: 1.2em;
+      display: flex;
+      justify-content: center;
     }
 
     .timeline-header-dots {
       flex: 1;
-      border-top: 3px dotted #0053A1;
+      height: 3px;
+      background-image: url("data:image/svg+xml,%3Csvg width='12' height='3' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='2' cy='1.5' r='1.5' fill='%230053A1'/%3E%3C/svg%3E");
+      background-repeat: repeat-x;
+      background-position: center;
+      background-size: 12px 3px;
     }
 
     .timeline-header-arrow {
+      flex-shrink: 0;
+      width: 1.2em;
+      display: flex;
+      justify-content: center;
       color: #0053A1;
       font-size: 0.9rem;
       line-height: 1;
@@ -889,7 +932,7 @@ import { navConfig } from '@/config/navigation';
     /* Conectores entre hitos */
     .timeline-connector {
       position: relative;
-      height: 50px;
+      height: 90px;
       width: 100%;
       z-index: 3;
     }
@@ -915,11 +958,11 @@ import { navConfig } from '@/config/navigation';
 
     /* Puntos del trazo "fluyen" hacia la siguiente sucursal (sensación de avance) */
     .timeline-connector-path {
-      animation: dash-flow 0.9s linear infinite;
+      animation: dash-flow 1.1s linear infinite;
     }
 
     @keyframes dash-flow {
-      to { stroke-dashoffset: -10; }
+      to { stroke-dashoffset: -12; }
     }
 
     /* La punta de flecha late suavemente para señalar el avance.
@@ -1322,9 +1365,11 @@ import { navConfig } from '@/config/navigation';
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       const track = document.getElementById('carousel-track');
+      const slides = track ? track.querySelectorAll('.carousel-slide') : [];
       const dots = document.querySelectorAll('.carousel-dot');
       const prevBtn = document.querySelector('.carousel-prev');
       const nextBtn = document.querySelector('.carousel-next');
+      const carousel = document.getElementById('hero-carousel');
       if (!track || dots.length === 0) return;
 
       let current = 0;
@@ -1334,6 +1379,8 @@ import { navConfig } from '@/config/navigation';
         current = ((index % total) + total) % total;
         track.style.transform = `translateX(-${current * 100}%)`;
         dots.forEach((d, i) => d.classList.toggle('active', i === current));
+        // Re-trigger Ken Burns: removing then re-adding restarts the animation.
+        slides.forEach((s, i) => s.classList.toggle('is-active', i === current));
       }
 
       prevBtn?.addEventListener('click', () => goTo(current - 1));
@@ -1342,7 +1389,12 @@ import { navConfig } from '@/config/navigation';
         dot.addEventListener('click', () => goTo(parseInt(dot.dataset.index)));
       });
 
-      setInterval(() => goTo(current + 1), 5000);
+      // Auto-advance, paused while the pointer rests on the carousel.
+      let timer = setInterval(() => goTo(current + 1), 5000);
+      carousel?.addEventListener('mouseenter', () => clearInterval(timer));
+      carousel?.addEventListener('mouseleave', () => {
+        timer = setInterval(() => goTo(current + 1), 5000);
+      });
     });
   </script>
 

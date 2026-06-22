@@ -122,7 +122,7 @@ const fullOgImage = new URL(ogImage, Astro.site).href;
         <!-- Dra. Arce Button with Dropdown -->
         <div class="relative group/edith pointer-events-auto">
           <!-- Trigger Button -->
-          <div class="cursor-pointer">
+          <div class="cursor-pointer cta-attn">
             <!-- Mobile compact version -->
             <div id="dra-edith-mobile" class="sm:hidden relative bg-gradient-to-r from-pink-500 to-pink-600 hover:from-pink-600 hover:to-pink-700 text-white p-1.5 rounded-full shadow-2xl hover:shadow-pink-500/50 transition-all duration-300 transform hover:-translate-y-1">
               <div class="relative w-11 h-11 rounded-full overflow-hidden border-2 border-white shadow-lg">
@@ -222,7 +222,8 @@ const fullOgImage = new URL(ogImage, Astro.site).href;
       <div class="relative group/dropdown pointer-events-auto">
         <div
           id="whatsapp-button"
-          class="block cursor-pointer"
+          class="block cursor-pointer cta-attn"
+          style="--cta-glow: rgba(34, 197, 94, 0.6)"
           role="button"
           tabindex="0"
           aria-label="Agendar consulta de valoración"

@@ -53,3 +53,29 @@ header.sticky,
   position: -webkit-sticky !important;
   position: sticky !important;
 }
+
+/* Sticky CTA attention cue: periodic wiggle + colored glow to draw the eye
+   without constant motion. Glow color is set per-button via --cta-glow. */
+@keyframes cta-attn {
+  0%, 64%, 100% { transform: translateY(0) rotate(0); }
+  70% { transform: translateY(-6px) rotate(-2.5deg); }
+  76% { transform: translateY(0) rotate(2.5deg); }
+  82% { transform: translateY(-4px) rotate(-1.5deg); }
+  88% { transform: translateY(0) rotate(0); }
+}
+
+@keyframes cta-glow {
+  0%, 100% { filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.25)); }
+  50% { filter: drop-shadow(0 0 18px var(--cta-glow, rgba(236, 72, 153, 0.6))); }
+}
+
+.cta-attn {
+  animation: cta-attn 5.5s cubic-bezier(0.22, 1, 0.36, 1) infinite,
+             cta-glow 2.4s ease-in-out infinite;
+  transform-origin: bottom center;
+  will-change: transform, filter;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cta-attn { animation: none; }
+}
