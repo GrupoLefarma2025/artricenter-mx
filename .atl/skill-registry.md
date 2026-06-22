@@ -23,6 +23,7 @@ Last updated: 2026-06-22
 
 | Skill | Trigger / description | Scope | Path |
 | --- | --- | --- | --- |
+| `agentix-ceo` | Manage your team — create roles, assign tasks, spawn workers, and monitor progress | project | `/home/zurybr/lefarma/artricenter-mx/.claude/skills/agentix-ceo/SKILL.md` |
 | `astro` | Skill for building with the Astro web framework. Helps create Astro components and pages, configure SSR adapters, set up content collections, deploy static sites, and manage project structure and CLI commands. Use when the user needs to work with Astro, mentions .astro files, asks about static site generation (SSG), islands architecture, content collections, or deploying an Astro project. | project | `/home/zurybr/lefarma/artricenter-mx/.agents/skills/astro/SKILL.md` |
 | `branch-pr` | Create Gentle AI pull requests with issue-first checks. Trigger: creating, opening, or preparing PRs for review. | user | `/home/zurybr/.config/opencode/skills/branch-pr/SKILL.md` |
 | `chained-pr` | Trigger: PRs over 400 lines, stacked PRs, review slices. Split oversized changes into chained PRs that protect review focus. | user | `/home/zurybr/.config/opencode/skills/chained-pr/SKILL.md` |

@@ -21,7 +21,24 @@ export interface PostResponse {
   data: Post;
 }
 
-function mapApiPost(raw: any): Post {
+interface RawPost {
+  id: number;
+  title?: string;
+  slug?: string;
+  excerpt?: string;
+  content?: string;
+  featured_image?: string | null;
+  featuredImage?: string | null;
+  status?: string;
+  published_at?: string;
+  publishedAt?: string;
+  author_name?: string;
+  authorName?: string;
+  categories_json?: string;
+  categoriesJson?: string;
+}
+
+function mapApiPost(raw: RawPost): Post {
   return {
     id: raw.id,
     title: raw.title || '',

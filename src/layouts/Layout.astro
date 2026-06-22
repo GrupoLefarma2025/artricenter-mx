@@ -31,6 +31,7 @@ const fullOgImage = new URL(ogImage, Astro.site).href;
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#0053a1" />
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="preload" href="/fonts/AtkinsonHyperlegible-Regular.ttf" as="font" type="font/ttf" crossorigin />
     <link rel="canonical" href={canonicalURL} />
     <meta name="description" content={description} />
     <meta name="robots" content="index, follow" />
@@ -104,7 +105,7 @@ const fullOgImage = new URL(ogImage, Astro.site).href;
   </head>
   <body class="bg-white text-gray-900 antialiased relative" style="font-family: 'Atkinson Hyperlegible', sans-serif;">
     <!-- Paper Texture Background -->
-    <div class="fixed inset-0 pointer-events-none z-0" style="background-image: url('/assets/images/texture/bg.png'); background-size: 300px 300px; background-repeat: repeat; background-position: 0 0, 150px 150px; opacity: 0.03; mix-blend-mode: multiply;"></div>
+    <div class="fixed inset-0 pointer-events-none z-0" style="background-image: url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E&quot;); background-size: 300px 300px; background-repeat: repeat; opacity: 0.03; mix-blend-mode: multiply;"></div>
 
     <Header navItems={navConfig.items} currentPage={currentPage} />
 
