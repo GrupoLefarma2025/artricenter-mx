@@ -11,7 +11,7 @@ export const testimonios: Testimonio[] = [
   {
     id: "yolanda",
     nombre: "Yolanda",
-    foto: "/images/testimonios/yolanda.png",
+    foto: "/images/testimonios/yolanda.avif",
     condicion: "Artritis",
     texto:
       'Yo no podía caminar, me dolían las rodillas, no podía tomar una taza con café, no podía peinarme... Aquí me atendieron muy bien y me explicaron. Seguí las instrucciones y mejore demasiado, subo y bajo escaleras, me puedo bañar por si sola. Ahora puedo hacer todo y no dependo de mis hijas. "Les recomiendo que vengan, prueben y cambien su modo de vida".',
@@ -19,7 +19,7 @@ export const testimonios: Testimonio[] = [
   {
     id: "teresa",
     nombre: "Teresa",
-    foto: "/images/testimonios/teresa.png",
+    foto: "/images/testimonios/teresa.avif",
     condicion: "Osteoartrosis / Artrosis",
     texto:
       'No podía exprimir jergas o trapos de cocina, me dolían los hombros, las rodillas... Me ofrecieron facilidades de pago y llevo 1 año y medio y estoy muy contenta con mi mejoría y la atención en Artricenter. "Esto es un tratamiento integral para mejorar las articulaciones y no, nos va a dañar".',
@@ -28,7 +28,7 @@ export const testimonios: Testimonio[] = [
   {
     id: "julia",
     nombre: "Sra. Julia",
-    foto: "/images/testimonios/julia.png",
+    foto: "/images/testimonios/julia.avif",
     condicion: "Dolor articular",
     texto:
       'Ella uso el Theradol lo cual le ayudo considerablemente a disminuir el dolor articular, junto con los suplementos adecuados y un programa nutricional completo. "Yo en 7 días comencé a ver una gran mejoría, por eso recomiendo a Artricenter".',
@@ -37,7 +37,7 @@ export const testimonios: Testimonio[] = [
   {
     id: "abelino",
     nombre: "Sr. Abelino",
-    foto: "/images/testimonios/abelino.png",
+    foto: "/images/testimonios/abelino.avif",
     condicion: "Dolor intenso en brazos",
     texto:
       'El Sr. Abelino asistió a Artricenter a su consulta de valoración médica ya que padecía de un dolor muy intenso en sus brazos lo cual le impedía dormir y desarrollar actividades incluso en su trabajo, gracias a Artricenter y al tratamiento médico ese dolor fue disminuyendo y en la actualidad ya no lo percibe: "El personal médico ha sido muy atento conmigo y me explica muy bien, yo pienso que muchas personas deberían tomar este tratamiento para mejorar su calidad de vida".',
@@ -45,7 +45,7 @@ export const testimonios: Testimonio[] = [
   {
     id: "ernestina",
     nombre: "Ernestina González",
-    foto: "/images/testimonios/ernestina.png",
+    foto: "/images/testimonios/ernestina.avif",
     condicion: "Rodillas",
     texto:
       'Nuestra paciente Ernestina González llego a Artricenter después de haber visto mejoría en su esposo con el Tratamiento Médico Integral, con gran energía y felicidad nos menciona que vio resultados al poco tiempo de haber comenzado su tratamiento y resalta el programa nutricional y la constancia como clave para la mejoría de sus articulaciones en las rodillas: "Conocer Artricenter a mí me ayudo mucho, el cual también puede ayudar a mucha gente, que se dé la oportunidad porque de esto depende llevar una vida sana".',
