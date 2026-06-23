@@ -36,11 +36,18 @@ import Layout from '@/layouts/Layout.astro';
   }}
 >
   <div class="max-w-7xl mx-auto px-4 py-12">
+    <script is:inline>
+      // Enable scroll-triggered animations only when motion is not reduced.
+      if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        document.documentElement.classList.add('animations-enabled');
+      }
+    </script>
+
     <!-- Enfermedades Reumáticas Intro -->
     <section id="enfermedades-reumaticas" class="mb-16">
       <h1 class="sr-only">Especialidades Reumatológicas — Artricenter</h1>
-      <h2 class="text-4xl md:text-5xl font-bold text-blue-600 text-center mb-6">Enfermedades Reumáticas</h2>
-      <div class="flex items-center justify-center gap-6 mb-12">
+      <h2 class="text-4xl md:text-5xl font-bold text-blue-600 text-center mb-6 reveal-up">Enfermedades Reumáticas</h2>
+      <div class="flex items-center justify-center gap-6 mb-12 reveal-fade">
         <div class="h-1 w-40 rounded-full" style="background: linear-gradient(to right, transparent, rgb(0, 83, 161))"></div>
         <div class="flex gap-2">
           <div class="w-3 h-3 rounded-full animate-pulse" style="background-color: rgb(0, 83, 161)"></div>
@@ -51,26 +58,26 @@ import Layout from '@/layouts/Layout.astro';
       </div>
 
       <div class="max-w-4xl mx-auto space-y-6 text-lg text-gray-700 leading-relaxed">
-        <p>
+        <p class="reveal-up" style="--reveal-i: 0;">
           Las enfermedades reumáticas son la segunda causa de consulta médica en hospitales, además de que aportan más del 50% de las causas de invalidez total o parcial y son la segunda causa de ausentismo y pérdida laboral.
         </p>
 
-        <p>
+        <p class="reveal-up" style="--reveal-i: 1;">
           Son aquellas que suelen afectar al aparato locomotor, es decir, articulaciones, tendones, ligamentos, músculos y huesos; sin embargo, algunas de ellas también pueden ocasionar daños en otros órganos.
         </p>
 
-        <p>
+        <p class="reveal-up" style="--reveal-i: 2;">
           Algunos de los síntomas más comunes que ocasionan estas enfermedades son: dolor, inflamación articular, rigidez, fatiga y trastornos del sueño.
         </p>
 
-        <p>
+        <p class="reveal-up" style="--reveal-i: 3;">
           En <strong class="text-blue-600">Artricenter</strong> nos especializamos en el tratamiento de tres de las principales enfermedades reumáticas: Osteoartrosis, Artritis reumatoide y Fibromialgia.
         </p>
       </div>
     </section>
 
     <!-- Separator -->
-    <div class="flex items-center justify-center gap-6 my-16">
+    <div class="flex items-center justify-center gap-6 my-16 reveal-fade">
       <div class="h-1 w-40 bg-gradient-to-r from-transparent via-blue-500 to-blue-600 rounded-full"></div>
       <div class="flex gap-2">
         <div class="w-3 h-3 bg-blue-600 rounded-full animate-pulse"></div>
@@ -82,8 +89,8 @@ import Layout from '@/layouts/Layout.astro';
     <!-- Osteoartrosis -->
     <section id="artrosis-osteoartrosis" class="mb-16 scroll-mt-20">
       <div class="text-center mb-12">
-        <h2 class="text-3xl md:text-4xl font-bold text-blue-600 mb-6">Osteoartrosis</h2>
-        <div class="flex items-center justify-center gap-6 mb-8">
+        <h2 class="text-3xl md:text-4xl font-bold text-blue-600 mb-6 reveal-up">Osteoartrosis</h2>
+        <div class="flex items-center justify-center gap-6 mb-8 reveal-fade">
           <div class="h-1 w-40 bg-gradient-to-r from-transparent via-blue-500 to-blue-600 rounded-full"></div>
           <div class="flex gap-2">
             <div class="w-3 h-3 bg-blue-600 rounded-full animate-pulse"></div>
@@ -92,7 +99,7 @@ import Layout from '@/layouts/Layout.astro';
           <div class="h-1 w-40 bg-gradient-to-l from-transparent via-blue-500 to-blue-600 rounded-full"></div>
         </div>
 
-        <div class="bg-gradient-to-r from-blue-50 to-blue-100 rounded-2xl p-6 md:p-8 max-w-3xl mx-auto border-2 border-blue-200 shadow-lg">
+        <div class="bg-gradient-to-r from-blue-50 to-blue-100 rounded-2xl p-6 md:p-8 max-w-3xl mx-auto border-2 border-blue-200 shadow-lg reveal-scale">
           <p class="text-xl md:text-2xl font-semibold text-gray-800 mb-2">Nuestros pacientes han logrado resultados como:</p>
           <p class="text-3xl md:text-4xl font-bold text-blue-600">Hasta 91% de mejoría en osteoartrosis / artrosis</p>
         </div>
@@ -102,22 +109,22 @@ import Layout from '@/layouts/Layout.astro';
         <div class="order-2 lg:order-1">
 
           <div class="space-y-4 text-gray-700 leading-relaxed">
-            <p>
+            <p class="reveal-up" style="--reveal-i: 0;">
               La osteoartrosis es la enfermedad reumática más frecuente en la población adulta.
             </p>
 
-            <p>
+            <p class="reveal-up" style="--reveal-i: 1;">
               Es una enfermedad articular crónica degenerativa con componente inflamatorio, caracterizada por degeneración y pérdida progresiva del cartílago hialino, hueso subcondral y daño del tejido sinovial, asociados con engrosamiento y esclerosis de la lámina subcondral, formación de osteofitos en el borde articular, distensión de la cápsula articular y cambios en los tejidos blandos periarticulares.
             </p>
 
-            <p>
+            <p class="reveal-up" style="--reveal-i: 2;">
               Por lo general, afecta a las rodillas, columna, dedos de las manos, caderas siendo menos frecuente en hombros, codos y muñecas.
             </p>
           </div>
         </div>
 
         <div class="order-1 lg:order-2">
-          <div class="rounded-lg shadow-xl overflow-hidden">
+          <div class="rounded-lg shadow-xl overflow-hidden reveal-scale">
             <img
               src="/assets/images/specialties/knee.avif"
               alt="Osteoartrosis - Rodilla afectada por desgaste de cartílago articular"
@@ -130,7 +137,7 @@ import Layout from '@/layouts/Layout.astro';
     </section>
 
     <!-- Separator -->
-    <div class="flex items-center justify-center gap-6 my-16">
+    <div class="flex items-center justify-center gap-6 my-16 reveal-fade">
       <div class="h-1 w-40 bg-gradient-to-r from-transparent via-green-500 to-green-600 rounded-full"></div>
       <div class="flex gap-2">
         <div class="w-3 h-3 bg-green-600 rounded-full animate-pulse"></div>
@@ -142,8 +149,8 @@ import Layout from '@/layouts/Layout.astro';
     <!-- Artritis Reumatoide -->
     <section id="artritis-reumatoide" class="mb-16 scroll-mt-20">
       <div class="text-center mb-12">
-        <h2 class="text-3xl md:text-4xl font-bold text-green-600 mb-6">Artritis Reumatoide</h2>
-        <div class="flex items-center justify-center gap-6 mb-8">
+        <h2 class="text-3xl md:text-4xl font-bold text-green-600 mb-6 reveal-up">Artritis Reumatoide</h2>
+        <div class="flex items-center justify-center gap-6 mb-8 reveal-fade">
           <div class="h-1 w-40 bg-gradient-to-r from-transparent via-green-500 to-green-600 rounded-full"></div>
           <div class="flex gap-2">
             <div class="w-3 h-3 bg-green-600 rounded-full animate-pulse"></div>
@@ -152,7 +159,7 @@ import Layout from '@/layouts/Layout.astro';
           <div class="h-1 w-40 bg-gradient-to-l from-transparent via-green-500 to-green-600 rounded-full"></div>
         </div>
 
-        <div class="bg-gradient-to-r from-green-50 to-green-100 rounded-2xl p-6 md:p-8 max-w-3xl mx-auto border-2 border-green-200 shadow-lg">
+        <div class="bg-gradient-to-r from-green-50 to-green-100 rounded-2xl p-6 md:p-8 max-w-3xl mx-auto border-2 border-green-200 shadow-lg reveal-scale">
           <p class="text-xl md:text-2xl font-semibold text-gray-800 mb-2">Nuestros pacientes han logrado resultados como:</p>
           <p class="text-3xl md:text-4xl font-bold text-green-600">Hasta 67% de mejoría en artritis reumatoide</p>
         </div>
@@ -160,7 +167,7 @@ import Layout from '@/layouts/Layout.astro';
 
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
         <div>
-          <div class="rounded-lg shadow-xl overflow-hidden">
+          <div class="rounded-lg shadow-xl overflow-hidden reveal-scale">
             <img
               src="/assets/images/specialties/hand.avif"
               alt="Artritis Reumatoide - Mano con inflamación articular"
@@ -172,19 +179,19 @@ import Layout from '@/layouts/Layout.astro';
 
         <div>
           <div class="space-y-4 text-gray-700 leading-relaxed">
-            <p>
+            <p class="reveal-up" style="--reveal-i: 0;">
               La artritis reumatoide es una enfermedad inflamatoria, sistémica, de curso crónico, de causa multifactorial, origen autoinmune, cuya mayor caracterización es dolor, inflamación y daño articular con progresiva discapacidad.
             </p>
 
-            <p>
+            <p class="reveal-up" style="--reveal-i: 1;">
               Presenta una alta tasa de morbimortalidad que puede llevar al deterioro de la calidad de vida del individuo como paciente, a su familia y a la sociedad.
             </p>
 
-            <p>
+            <p class="reveal-up" style="--reveal-i: 2;">
               Se caracteriza por una inflamación persistente de la membrana sinovial, que afecta preferentemente articulaciones periféricas, principalmente pequeñas articulaciones como: mano, muñeca y pies, lo cual conduce a la destrucción del cartílago, erosión ósea y deformidad articular.
             </p>
 
-            <p>
+            <p class="reveal-up" style="--reveal-i: 3;">
               También puede afectar otros órganos por lo que se considera una enfermedad sistémica.
             </p>
           </div>
@@ -193,7 +200,7 @@ import Layout from '@/layouts/Layout.astro';
     </section>
 
     <!-- Separator -->
-    <div class="flex items-center justify-center gap-6 my-16">
+    <div class="flex items-center justify-center gap-6 my-16 reveal-fade">
       <div class="h-1 w-40 bg-gradient-to-r from-transparent via-orange-500 to-orange-600 rounded-full"></div>
       <div class="flex gap-2">
         <div class="w-3 h-3 bg-orange-600 rounded-full animate-pulse"></div>
@@ -205,8 +212,8 @@ import Layout from '@/layouts/Layout.astro';
     <!-- Fibromialgia -->
     <section id="fibromialgia" class="mb-16 scroll-mt-20">
       <div class="text-center mb-12">
-        <h2 class="text-3xl md:text-4xl font-bold text-orange-600 mb-6">Fibromialgia</h2>
-        <div class="flex items-center justify-center gap-6 mb-8">
+        <h2 class="text-3xl md:text-4xl font-bold text-orange-600 mb-6 reveal-up">Fibromialgia</h2>
+        <div class="flex items-center justify-center gap-6 mb-8 reveal-fade">
           <div class="h-1 w-40 bg-gradient-to-r from-transparent via-orange-500 to-orange-600 rounded-full"></div>
           <div class="flex gap-2">
             <div class="w-3 h-3 bg-orange-600 rounded-full animate-pulse"></div>
@@ -215,7 +222,7 @@ import Layout from '@/layouts/Layout.astro';
           <div class="h-1 w-40 bg-gradient-to-l from-transparent via-orange-500 to-orange-600 rounded-full"></div>
         </div>
 
-        <div class="bg-gradient-to-r from-orange-50 to-orange-100 rounded-2xl p-6 md:p-8 max-w-3xl mx-auto border-2 border-orange-200 shadow-lg">
+        <div class="bg-gradient-to-r from-orange-50 to-orange-100 rounded-2xl p-6 md:p-8 max-w-3xl mx-auto border-2 border-orange-200 shadow-lg reveal-scale">
           <p class="text-xl md:text-2xl font-semibold text-gray-800 mb-2">Nuestros pacientes han logrado resultados como:</p>
           <p class="text-3xl md:text-4xl font-bold text-orange-600">Hasta 65% de mejoría en fibromialgia</p>
         </div>
@@ -225,14 +232,14 @@ import Layout from '@/layouts/Layout.astro';
         <div class="order-2 lg:order-1">
 
           <div class="space-y-4 text-gray-700 leading-relaxed">
-            <p>
+            <p class="reveal-up" style="--reveal-i: 0;">
               La fibromialgia es una enfermedad crónica caracterizada por dolor generalizado o ampliamente distribuido del aparato locomotor que se acompaña de fatiga, cansancio intenso, disminución de la capacidad funcional, alteraciones cognitivas problemas de sueño, memoria, mal estado de ánimo y síntomas funcionales en diversos órganos.
             </p>
           </div>
         </div>
 
         <div class="order-1 lg:order-2">
-          <div class="rounded-lg shadow-xl overflow-hidden">
+          <div class="rounded-lg shadow-xl overflow-hidden reveal-scale">
             <img
               src="/assets/images/specialties/back.avif"
               alt="Fibromialgia - Dolor generalizado en espalda y aparato locomotor"
@@ -245,7 +252,7 @@ import Layout from '@/layouts/Layout.astro';
     </section>
 
     <!-- Separator -->
-    <div class="flex items-center justify-center gap-6 my-16">
+    <div class="flex items-center justify-center gap-6 my-16 reveal-fade">
       <div class="h-1 w-40 bg-gradient-to-r from-transparent via-blue-500 to-blue-600 rounded-full"></div>
       <div class="flex gap-2">
         <div class="w-3 h-3 bg-blue-600 rounded-full animate-pulse"></div>
@@ -257,8 +264,8 @@ import Layout from '@/layouts/Layout.astro';
     <!-- Espondiloartritis -->
     <section id="espondilitis-anquilosante" class="mb-16 scroll-mt-20">
       <div class="text-center mb-12">
-        <h2 class="text-3xl md:text-4xl font-bold text-blue-600 mb-6">Espondiloartritis</h2>
-        <div class="flex items-center justify-center gap-6">
+        <h2 class="text-3xl md:text-4xl font-bold text-blue-600 mb-6 reveal-up">Espondiloartritis</h2>
+        <div class="flex items-center justify-center gap-6 reveal-fade">
           <div class="h-1 w-40 bg-gradient-to-r from-transparent via-blue-500 to-blue-600 rounded-full"></div>
           <div class="flex gap-2">
             <div class="w-3 h-3 bg-blue-600 rounded-full animate-pulse"></div>
@@ -270,7 +277,7 @@ import Layout from '@/layouts/Layout.astro';
 
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
         <div>
-          <div class="rounded-lg shadow-xl overflow-hidden">
+          <div class="rounded-lg shadow-xl overflow-hidden reveal-scale">
             <img
               src="/assets/images/specialties/doctor-helping.avif"
               alt="Espondiloartritis - Médico especialista evaluando paciente con dolor axial"
@@ -282,30 +289,30 @@ import Layout from '@/layouts/Layout.astro';
 
         <div>
           <div class="space-y-4 text-gray-700 leading-relaxed">
-            <p>
+            <p class="reveal-up" style="--reveal-i: 0;">
               En este término se incluye un grupo heterogéneo de enfermedades inflamatorias reumáticas crónicas que afectan predominantemente al esqueleto axial, las articulaciones sacroilíacas, pudiendo afectar las articulaciones periféricas.
             </p>
 
-            <p>
+            <p class="reveal-up" style="--reveal-i: 1;">
               Presentan en común:
             </p>
 
             <ol class="list-decimal list-inside space-y-2 ml-4">
-              <li>
+              <li class="reveal-up" style="--reveal-i: 2;">
                 <strong>Manifestaciones clínicas:</strong> La más importante es el dolor de espalda bajo de tipo inflamatorio.
               </li>
-              <li>
+              <li class="reveal-up" style="--reveal-i: 3;">
                 <strong>Manifestaciones radiológicas-sacroileítis.</strong>
               </li>
-              <li>
+              <li class="reveal-up" style="--reveal-i: 4;">
                 <strong>Factor genético-agregación familiar</strong> y una fuerte asociación con el antígeno HLA B27.
               </li>
-              <li>
+              <li class="reveal-up" style="--reveal-i: 5;">
                 <strong>Respuesta similar favorable</strong> a los antinflamatorios.
               </li>
             </ol>
 
-            <p>
+            <p class="reveal-up" style="--reveal-i: 6;">
               Difieren de otros tipos de artritis, ya que involucra los sitios donde los ligamentos y tendones se unen a los huesos, llamados "entesis".
             </p>
           </div>
@@ -314,7 +321,7 @@ import Layout from '@/layouts/Layout.astro';
     </section>
 
     <!-- Separator -->
-    <div class="flex items-center justify-center gap-6 my-16">
+    <div class="flex items-center justify-center gap-6 my-16 reveal-fade">
       <div class="h-1 w-40 bg-gradient-to-r from-transparent via-green-500 to-green-600 rounded-full"></div>
       <div class="flex gap-2">
         <div class="w-3 h-3 bg-green-600 rounded-full animate-pulse"></div>
@@ -326,8 +333,8 @@ import Layout from '@/layouts/Layout.astro';
     <!-- Reumatismos de Partes Blandas -->
     <section id="reumatismos-de-partes-blandas" class="mb-16 scroll-mt-20">
       <div class="text-center mb-12">
-        <h2 class="text-3xl md:text-4xl font-bold text-green-600 mb-6">Reumatismos de Partes Blandas</h2>
-        <div class="flex items-center justify-center gap-6">
+        <h2 class="text-3xl md:text-4xl font-bold text-green-600 mb-6 reveal-up">Reumatismos de Partes Blandas</h2>
+        <div class="flex items-center justify-center gap-6 reveal-fade">
           <div class="h-1 w-40 bg-gradient-to-r from-transparent via-green-500 to-green-600 rounded-full"></div>
           <div class="flex gap-2">
             <div class="w-3 h-3 bg-green-600 rounded-full animate-pulse"></div>
@@ -340,22 +347,22 @@ import Layout from '@/layouts/Layout.astro';
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
         <div class="order-2 lg:order-1">
           <div class="space-y-4 text-gray-700 leading-relaxed">
-            <p>
+            <p class="reveal-up" style="--reveal-i: 0;">
               Los reumatismos de partes blandas son procesos dolorosos localizados que afectan a las estructuras próximas a las articulaciones, como los tendones, las bursas, los músculos o nervios.
             </p>
 
-            <p>
+            <p class="reveal-up" style="--reveal-i: 1;">
               Se originan generalmente por micro-traumas a repetición, como trabajos con movimientos repetitivos que pueden producir elongación, compresión e irritación de las estructuras.
             </p>
 
-            <p>
+            <p class="reveal-up" style="--reveal-i: 2;">
               Estas enfermedades cuando son precipitadas por traumas y no se atienden adecuadamente pueden convertirse en crónicas.
             </p>
           </div>
         </div>
 
         <div class="order-1 lg:order-2">
-          <div class="rounded-lg shadow-xl overflow-hidden">
+          <div class="rounded-lg shadow-xl overflow-hidden reveal-scale">
             <img
               src="/assets/images/specialties/doctor-stretcher.avif"
               alt="Reumatismos de Partes Blandas - Evaluación de tendones y estructuras periarticulares"
@@ -367,4 +374,67 @@ import Layout from '@/layouts/Layout.astro';
       </div>
     </section>
   </div>
+
+  <style is:global>
+    /* Reveal animations for /especialidades */
+    .animations-enabled .reveal-up,
+    .animations-enabled .reveal-fade,
+    .animations-enabled .reveal-scale {
+      opacity: 0;
+      transition:
+        opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+        transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+      will-change: opacity, transform;
+    }
+
+    .animations-enabled .reveal-up {
+      transform: translateY(24px);
+      transition-delay: calc(var(--reveal-i, 0) * 80ms);
+    }
+
+    .animations-enabled .reveal-fade {
+      transform: translateY(12px);
+    }
+
+    .animations-enabled .reveal-scale {
+      transform: scale(0.96);
+    }
+
+    .animations-enabled .reveal-up.is-revealed,
+    .animations-enabled .reveal-fade.is-revealed,
+    .animations-enabled .reveal-scale.is-revealed {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+
+    /* Hero intro animates immediately on load */
+    .animations-enabled #enfermedades-reumaticas .reveal-up,
+    .animations-enabled #enfermedades-reumaticas .reveal-fade {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+
+  <script>
+    // Progressive enhancement: IO reveals elements as they enter the viewport.
+    if ('IntersectionObserver' in window) {
+      const revealElements = document.querySelectorAll('.reveal-up, .reveal-fade, .reveal-scale');
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-revealed');
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        { rootMargin: '0px 0px -60px 0px', threshold: 0.1 }
+      );
+      revealElements.forEach((el) => observer.observe(el));
+    } else {
+      document.querySelectorAll('.reveal-up, .reveal-fade, .reveal-scale').forEach((el) => {
+        el.classList.add('is-revealed');
+      });
+    }
+  </script>
 </Layout>

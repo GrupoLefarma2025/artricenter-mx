@@ -1,0 +1,256 @@
+- generic [active] [ref=e1]:
+  - link "Ir a inicio" [ref=e3] [cursor=pointer]:
+    - /url: /
+    - img "Artricenter" [ref=e4]
+  - banner [ref=e5]:
+    - generic [ref=e7]:
+      - link "Ir a inicio":
+        - /url: /
+        - img "Artricenter"
+      - link "Ir a inicio" [ref=e8] [cursor=pointer]:
+        - /url: /
+        - img [ref=e9]
+      - navigation "Navegacion principal" [ref=e11]:
+        - list [ref=e12]:
+          - listitem [ref=e13]:
+            - link "Quienes Somos" [ref=e14] [cursor=pointer]:
+              - /url: /
+          - listitem [ref=e15]
+          - listitem [ref=e16]:
+            - link "Especialidades" [ref=e17] [cursor=pointer]:
+              - /url: /especialidades
+          - listitem [ref=e18]:
+            - link "Tratamiento Médico Integral" [ref=e19] [cursor=pointer]:
+              - /url: /tratamiento-medico-integral
+          - listitem [ref=e20]
+          - listitem [ref=e21]:
+            - link "Club Vida y Salud" [ref=e22] [cursor=pointer]:
+              - /url: /club-vida-y-salud
+          - listitem [ref=e23]
+          - listitem [ref=e24]:
+            - link "Contáctanos" [ref=e25] [cursor=pointer]:
+              - /url: /contactanos
+  - main [ref=e26]:
+    - generic [ref=e27]:
+      - generic [ref=e28]:
+        - heading "Especialidades Reumatológicas — Artricenter" [level=1] [ref=e29]
+        - heading "Enfermedades Reumáticas" [level=2] [ref=e30]
+        - generic [ref=e38]:
+          - paragraph [ref=e39]: Las enfermedades reumáticas son la segunda causa de consulta médica en hospitales, además de que aportan más del 50% de las causas de invalidez total o parcial y son la segunda causa de ausentismo y pérdida laboral.
+          - paragraph [ref=e40]: Son aquellas que suelen afectar al aparato locomotor, es decir, articulaciones, tendones, ligamentos, músculos y huesos; sin embargo, algunas de ellas también pueden ocasionar daños en otros órganos.
+          - paragraph [ref=e41]: "Algunos de los síntomas más comunes que ocasionan estas enfermedades son: dolor, inflamación articular, rigidez, fatiga y trastornos del sueño."
+          - paragraph [ref=e42]:
+            - text: En
+            - strong [ref=e43]: Artricenter
+            - text: "nos especializamos en el tratamiento de tres de las principales enfermedades reumáticas: Osteoartrosis, Artritis reumatoide y Fibromialgia."
+      - generic [ref=e50]:
+        - generic [ref=e51]:
+          - heading "Osteoartrosis" [level=2] [ref=e52]
+          - generic [ref=e59]:
+            - paragraph [ref=e60]: "Nuestros pacientes han logrado resultados como:"
+            - paragraph [ref=e61]: Hasta 91% de mejoría en osteoartrosis / artrosis
+        - generic [ref=e62]:
+          - generic [ref=e64]:
+            - paragraph [ref=e65]: La osteoartrosis es la enfermedad reumática más frecuente en la población adulta.
+            - paragraph [ref=e66]: Es una enfermedad articular crónica degenerativa con componente inflamatorio, caracterizada por degeneración y pérdida progresiva del cartílago hialino, hueso subcondral y daño del tejido sinovial, asociados con engrosamiento y esclerosis de la lámina subcondral, formación de osteofitos en el borde articular, distensión de la cápsula articular y cambios en los tejidos blandos periarticulares.
+            - paragraph [ref=e67]: Por lo general, afecta a las rodillas, columna, dedos de las manos, caderas siendo menos frecuente en hombros, codos y muñecas.
+          - img "Osteoartrosis - Rodilla afectada por desgaste de cartílago articular" [ref=e70]
+      - generic [ref=e77]:
+        - generic [ref=e78]:
+          - heading "Artritis Reumatoide" [level=2] [ref=e79]
+          - generic [ref=e86]:
+            - paragraph [ref=e87]: "Nuestros pacientes han logrado resultados como:"
+            - paragraph [ref=e88]: Hasta 67% de mejoría en artritis reumatoide
+        - generic [ref=e89]:
+          - generic:
+            - generic:
+              - img "Artritis Reumatoide - Mano con inflamación articular"
+          - generic [ref=e91]:
+            - paragraph [ref=e92]: La artritis reumatoide es una enfermedad inflamatoria, sistémica, de curso crónico, de causa multifactorial, origen autoinmune, cuya mayor caracterización es dolor, inflamación y daño articular con progresiva discapacidad.
+            - paragraph [ref=e93]: Presenta una alta tasa de morbimortalidad que puede llevar al deterioro de la calidad de vida del individuo como paciente, a su familia y a la sociedad.
+            - paragraph [ref=e94]: "Se caracteriza por una inflamación persistente de la membrana sinovial, que afecta preferentemente articulaciones periféricas, principalmente pequeñas articulaciones como: mano, muñeca y pies, lo cual conduce a la destrucción del cartílago, erosión ósea y deformidad articular."
+            - paragraph [ref=e95]: También puede afectar otros órganos por lo que se considera una enfermedad sistémica.
+      - generic [ref=e102]:
+        - generic [ref=e103]:
+          - heading "Fibromialgia" [level=2] [ref=e104]
+          - generic [ref=e111]:
+            - paragraph [ref=e112]: "Nuestros pacientes han logrado resultados como:"
+            - paragraph [ref=e113]: Hasta 65% de mejoría en fibromialgia
+        - generic [ref=e114]:
+          - paragraph [ref=e117]: La fibromialgia es una enfermedad crónica caracterizada por dolor generalizado o ampliamente distribuido del aparato locomotor que se acompaña de fatiga, cansancio intenso, disminución de la capacidad funcional, alteraciones cognitivas problemas de sueño, memoria, mal estado de ánimo y síntomas funcionales en diversos órganos.
+          - generic:
+            - generic:
+              - img "Fibromialgia - Dolor generalizado en espalda y aparato locomotor"
+      - generic [ref=e124]:
+        - heading "Espondiloartritis" [level=2] [ref=e126]
+        - generic [ref=e133]:
+          - generic:
+            - generic:
+              - img "Espondiloartritis - Médico especialista evaluando paciente con dolor axial"
+          - generic [ref=e135]:
+            - paragraph [ref=e136]: En este término se incluye un grupo heterogéneo de enfermedades inflamatorias reumáticas crónicas que afectan predominantemente al esqueleto axial, las articulaciones sacroilíacas, pudiendo afectar las articulaciones periféricas.
+            - paragraph [ref=e137]: "Presentan en común:"
+            - list [ref=e138]:
+              - listitem [ref=e139]:
+                - strong [ref=e140]: "Manifestaciones clínicas:"
+                - text: La más importante es el dolor de espalda bajo de tipo inflamatorio.
+              - listitem [ref=e141]:
+                - strong [ref=e142]: Manifestaciones radiológicas-sacroileítis.
+              - listitem [ref=e143]:
+                - strong [ref=e144]: Factor genético-agregación familiar
+                - text: y una fuerte asociación con el antígeno HLA B27.
+              - listitem [ref=e145]:
+                - strong [ref=e146]: Respuesta similar favorable
+                - text: a los antinflamatorios.
+            - paragraph [ref=e147]: Difieren de otros tipos de artritis, ya que involucra los sitios donde los ligamentos y tendones se unen a los huesos, llamados "entesis".
+      - generic [ref=e154]:
+        - heading "Reumatismos de Partes Blandas" [level=2] [ref=e156]
+        - generic [ref=e163]:
+          - generic [ref=e165]:
+            - paragraph [ref=e166]: Los reumatismos de partes blandas son procesos dolorosos localizados que afectan a las estructuras próximas a las articulaciones, como los tendones, las bursas, los músculos o nervios.
+            - paragraph [ref=e167]: Se originan generalmente por micro-traumas a repetición, como trabajos con movimientos repetitivos que pueden producir elongación, compresión e irritación de las estructuras.
+            - paragraph [ref=e168]: Estas enfermedades cuando son precipitadas por traumas y no se atienden adecuadamente pueden convertirse en crónicas.
+          - generic:
+            - generic:
+              - img "Reumatismos de Partes Blandas - Evaluación de tendones y estructuras periarticulares"
+  - contentinfo [ref=e169]:
+    - generic [ref=e170]:
+      - generic [ref=e171]:
+        - generic [ref=e174]:
+          - img "Artricenter La Raza" [ref=e177]
+          - heading "Artricenter La Raza" [level=3] [ref=e179]
+          - generic [ref=e180]:
+            - generic [ref=e181]:
+              - img [ref=e183]
+              - paragraph [ref=e187]:
+                - text: Calzada Vallejo 233
+                - text: Héroes de Nacozári, GAM
+                - text: 07780 CDMX
+            - generic [ref=e188]:
+              - img [ref=e190]
+              - link "55 5989 0607" [ref=e192] [cursor=pointer]:
+                - /url: tel:5559890607
+            - generic [ref=e193]:
+              - img [ref=e195]
+              - paragraph [ref=e198]:
+                - text: Martes a sábado
+                - text: 8:00 - 18:30
+          - link "Ver en Google Maps" [ref=e199] [cursor=pointer]:
+            - /url: https://www.google.com/maps/search/?api=1&query=Calzada+Vallejo+233+H%C3%A9roes+de+Nacoz%C3%A1ri+Gustavo+A+Madero+Ciudad+de+M%C3%A9xico
+            - img [ref=e200]
+            - generic [ref=e202]: Ver en Google Maps
+            - img [ref=e203]
+        - generic [ref=e209]:
+          - img "Artricenter Atizapán" [ref=e212]
+          - heading "Artricenter Atizapán" [level=3] [ref=e214]
+          - generic [ref=e215]:
+            - generic [ref=e216]:
+              - img [ref=e218]
+              - paragraph [ref=e222]:
+                - text: Boulevard Adolfo López Mateos No. 65,
+                - text: Manzana 1, Lote 16, Zona 8,
+                - text: El Potrero, 57975,
+                - text: Ex-Ejido de Atizapán III, C.P. 57975
+            - generic [ref=e223]:
+              - img [ref=e225]
+              - link "55 5989 0607" [ref=e227] [cursor=pointer]:
+                - /url: tel:5559890607
+            - generic [ref=e228]:
+              - img [ref=e230]
+              - paragraph [ref=e233]:
+                - text: Martes a sábado
+                - text: 8:00 - 18:30
+          - link "Ver en Google Maps" [ref=e234] [cursor=pointer]:
+            - /url: https://goo.gl/maps/pAipxVAepPY7jqG48
+            - img [ref=e235]
+            - generic [ref=e237]: Ver en Google Maps
+            - img [ref=e238]
+        - generic [ref=e244]:
+          - img "Artricenter Viaducto" [ref=e247]
+          - heading "Artricenter Viaducto" [level=3] [ref=e249]
+          - generic [ref=e250]:
+            - generic [ref=e251]:
+              - img [ref=e253]
+              - paragraph [ref=e257]:
+                - text: Viaducto Río de la Piedad 130
+                - text: Jamaica, Venustiano Carranza
+                - text: 15800 CDMX
+            - generic [ref=e258]:
+              - img [ref=e260]
+              - link "55 5989 0607" [ref=e262] [cursor=pointer]:
+                - /url: tel:5559890607
+            - generic [ref=e263]:
+              - img [ref=e265]
+              - paragraph [ref=e268]:
+                - text: Martes a sábado
+                - text: 8:00 - 18:30
+          - link "Ver en Google Maps" [ref=e269] [cursor=pointer]:
+            - /url: https://www.google.com/maps/search/?api=1&query=Viaducto+R%C3%ADo+de+la+Piedad+130+Jamaica+Venustiano+Carranza+Ciudad+de+M%C3%A9xico
+            - img [ref=e270]
+            - generic [ref=e272]: Ver en Google Maps
+            - img [ref=e273]
+      - generic [ref=e277]:
+        - generic [ref=e278]:
+          - heading "Horarios de Atención" [level=3] [ref=e279]:
+            - img [ref=e280]
+            - text: Horarios de Atención
+          - paragraph [ref=e282]:
+            - text: Martes a sábado
+            - text: 8:00 - 18:30 horas
+        - generic [ref=e283]:
+          - heading "Contacto" [level=3] [ref=e284]:
+            - img [ref=e285]
+            - text: Contacto
+          - paragraph [ref=e287]:
+            - link "55 5989 0607" [ref=e288] [cursor=pointer]:
+              - /url: tel:5559890607
+        - generic [ref=e289]:
+          - heading "Síguenos" [level=3] [ref=e290]:
+            - img [ref=e291]
+            - text: Síguenos
+          - generic [ref=e293]:
+            - link "Facebook" [ref=e294] [cursor=pointer]:
+              - /url: https://www.facebook.com/Artricenter
+              - img [ref=e295]
+            - link "Twitter" [ref=e297] [cursor=pointer]:
+              - /url: https://x.com/Artricenter
+              - img [ref=e298]
+            - link "LinkedIn" [ref=e300] [cursor=pointer]:
+              - /url: https://www.linkedin.com/company/artricenter/
+              - img [ref=e301]
+            - link "Preguntas y sugerencias" [ref=e303] [cursor=pointer]:
+              - /url: /preguntas_quejas/
+              - generic [ref=e305]: Preguntas y sugerencias
+      - generic [ref=e306]:
+        - paragraph [ref=e307]: © 2026 Artricenter. Todos los derechos reservados.
+        - paragraph [ref=e308]:
+          - link "Aviso de Privacidad" [ref=e309] [cursor=pointer]:
+            - /url: /aviso-privacidad
+          - text: · Especialistas en el diagnóstico y tratamiento de enfermedades reumáticas
+  - generic:
+    - generic [ref=e314] [cursor=pointer]:
+      - img "Dra. Arce" [ref=e317]
+      - generic [ref=e320]:
+        - paragraph [ref=e321]: Pregúntale a la
+        - paragraph [ref=e322]: Dra. Arce
+    - button "Agendar consulta de valoración" [ref=e327] [cursor=pointer]:
+      - generic [ref=e328]:
+        - generic [ref=e329]:
+          - img [ref=e331]
+          - generic [ref=e334]:
+            - paragraph [ref=e335]: ¡Agenda aquí una consulta
+            - paragraph [ref=e336]: de valoración!
+        - generic [ref=e340]: "1"
+  - generic [ref=e343]:
+    - button "Menu" [ref=e344]:
+      - img [ref=e346]
+      - generic: Menu
+    - button "Inspect" [ref=e350]:
+      - img [ref=e352]
+      - generic: Inspect
+    - button "Audit" [ref=e354]:
+      - img [ref=e356]
+      - generic: Audit
+    - button "Settings" [ref=e359]:
+      - img [ref=e361]
+      - generic: Settings
