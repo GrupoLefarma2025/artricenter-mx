@@ -1,0 +1,341 @@
+---
+import { testimonios } from "@/data/testimonios";
+
+interface Props {
+  autoplayInterval?: number;
+}
+
+const { autoplayInterval = 8000 } = Astro.props;
+---
+
+<div
+  class="testimonial-carousel bg-gradient-to-br from-blue-50 via-white to-blue-50 py-16 px-4"
+  role="region"
+  aria-roledescription="carousel"
+  aria-label="Testimonios de pacientes"
+  data-autoplay-interval={autoplayInterval}
+  data-total={testimonios.length}
+>
+  <div class="max-w-6xl mx-auto">
+    <h2 class="text-4xl md:text-5xl font-bold text-center mb-12 text-blue-900">
+      Testimonios
+    </h2>
+
+    <div class="testimonial-carousel__viewport overflow-hidden">
+      <div
+        class="testimonial-carousel__track flex transition-transform duration-400 ease-in-out will-change-transform"
+        style={`width: ${testimonios.length * 100}%;`}
+      >
+        {
+          testimonios.map((testimonio, index) => (
+            <div
+              class="testimonial-carousel__slide flex-shrink-0 px-4"
+              style={`width: ${100 / testimonios.length}%;`}
+              role="group"
+              aria-roledescription="slide"
+              aria-label={`${index + 1} de ${testimonios.length}`}
+              aria-hidden={index !== 0 ? "true" : undefined}
+              data-index={index}
+            >
+              <article class="bg-white rounded-3xl shadow-2xl border border-blue-100 overflow-hidden h-[580px] md:h-[480px] max-w-4xl mx-auto">
+                <div class="flex flex-col md:flex-row h-full">
+                  <div class="md:w-2/5 relative h-64 md:h-full flex-shrink-0">
+                    <img
+                      src={testimonio.foto}
+                      alt={`Foto de ${testimonio.nombre}, paciente con ${testimonio.condicion}`}
+                      class="w-full h-full object-cover"
+                      loading={index === 0 ? "eager" : "lazy"}
+                      onerror="this.src='/images/testimonios/placeholder.png'; this.onerror=null;"
+                    />
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent md:bg-gradient-to-r md:from-transparent md:to-black/10" />
+                  </div>
+                  <div class="md:w-3/5 p-6 md:p-10 flex flex-col justify-between h-full overflow-hidden">
+                    <div>
+                      <svg class="w-12 h-12 text-blue-200 mb-4" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
+                      </svg>
+                      <blockquote>
+                        <p class="text-gray-700 text-base md:text-lg leading-relaxed line-clamp-6 md:line-clamp-5">
+                          {testimonio.texto}
+                        </p>
+                      </blockquote>
+                    </div>
+                    <footer class="mt-4 pt-4 border-t border-gray-100">
+                      <cite class="not-italic flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center flex-shrink-0">
+                          <span class="text-blue-600 font-bold text-sm">
+                            {testimonio.nombre.charAt(0)}
+                        </span>
+                        </div>
+                        <div>
+                          <span class="block font-bold text-blue-900 text-lg">
+                            {testimonio.nombre}
+                          </span>
+                          <span class="block text-blue-600 text-sm font-medium">
+                            {testimonio.condicion}
+                          </span>
+                          {testimonio.duracion && (
+                            <span class="block text-green-600 text-xs mt-0.5 font-medium">
+                              <span class="inline-block w-1.5 h-1.5 rounded-full bg-green-500 mr-1" />
+                              Duración: {testimonio.duracion}
+                            </span>
+                          )}
+                        </div>
+                      </cite>
+                    </footer>
+                  </div>
+                </div>
+              </article>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+
+    <!-- Navigation Controls -->
+    <div class="flex items-center justify-center gap-6 mt-10">
+      <button
+        type="button"
+        class="testimonial-carousel__prev w-12 h-12 rounded-full bg-white border-2 border-blue-200 text-blue-600 hover:bg-blue-600 hover:text-white hover:border-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all duration-200 shadow-md hover:shadow-lg disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:bg-white disabled:hover:text-blue-600 disabled:hover:border-blue-200"
+        aria-label="Testimonio anterior"
+        disabled={testimonios.length <= 1}
+      >
+        <svg
+          class="w-5 h-5 mx-auto"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          aria-hidden="true"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2.5"
+            d="M15 19l-7-7 7-7"
+          />
+        </svg>
+      </button>
+
+      <div
+        class="testimonial-carousel__dots flex gap-3"
+        role="tablist"
+        aria-label="Seleccionar testimonio"
+      >
+        {
+          testimonios.map((_, index) => (
+            <button
+              type="button"
+              class={`testimonial-carousel__dot w-3 h-3 rounded-full transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 ${
+                index === 0
+                  ? "bg-blue-600 w-8"
+                  : "bg-blue-200 hover:bg-blue-300"
+              }`}
+              role="tab"
+              aria-label={`Ir al testimonio ${index + 1}`}
+              aria-selected={index === 0 ? "true" : "false"}
+              aria-controls={`slide-${index}`}
+              data-index={index}
+            />
+          ))
+        }
+      </div>
+
+      <button
+        type="button"
+        class="testimonial-carousel__next w-12 h-12 rounded-full bg-white border-2 border-blue-200 text-blue-600 hover:bg-blue-600 hover:text-white hover:border-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all duration-200 shadow-md hover:shadow-lg disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:bg-white disabled:hover:text-blue-600 disabled:hover:border-blue-200"
+        aria-label="Siguiente testimonio"
+        disabled={testimonios.length <= 1}
+      >
+        <svg
+          class="w-5 h-5 mx-auto"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          aria-hidden="true"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2.5"
+            d="M9 5l7 7-7 7"
+          />
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Autoplay Status (visually hidden) -->
+  <div class="sr-only" aria-live="polite" aria-atomic="true">
+    <span class="testimonial-carousel__status">
+      Mostrando testimonio 1 de {testimonios.length}
+    </span>
+  </div>
+</div>
+
+<script is:inline>
+  (function () {
+    const carousels = document.querySelectorAll(".testimonial-carousel");
+
+    carousels.forEach((carousel) => {
+      const track = carousel.querySelector(".testimonial-carousel__track");
+      const slides = carousel.querySelectorAll(".testimonial-carousel__slide");
+      const prevBtn = carousel.querySelector(".testimonial-carousel__prev");
+      const nextBtn = carousel.querySelector(".testimonial-carousel__next");
+      const dots = carousel.querySelectorAll(".testimonial-carousel__dot");
+      const status = carousel.querySelector(".testimonial-carousel__status");
+
+      const total = parseInt(carousel.dataset.total, 10);
+      const autoplayInterval = parseInt(carousel.dataset.autoplayInterval, 10) || 8000;
+
+      if (total <= 1) {
+        if (prevBtn) prevBtn.disabled = true;
+        if (nextBtn) nextBtn.disabled = true;
+        return;
+      }
+
+      let currentIndex = 0;
+      let isPaused = false;
+      let autoplayTimer = null;
+      let touchStartX = 0;
+      let touchEndX = 0;
+
+      function updateSlide(index) {
+        track.style.transform = `translateX(-${index * (100 / total)}%)`;
+
+        slides.forEach((slide, i) => {
+          if (i === index) {
+            slide.removeAttribute("aria-hidden");
+          } else {
+            slide.setAttribute("aria-hidden", "true");
+          }
+        });
+
+        dots.forEach((dot, i) => {
+          if (i === index) {
+            dot.setAttribute("aria-selected", "true");
+            dot.classList.remove("bg-blue-200", "hover:bg-blue-300", "w-3");
+            dot.classList.add("bg-blue-600", "w-8");
+          } else {
+            dot.setAttribute("aria-selected", "false");
+            dot.classList.remove("bg-blue-600", "w-8");
+            dot.classList.add("bg-blue-200", "hover:bg-blue-300", "w-3");
+          }
+        });
+
+        if (status) {
+          status.textContent = `Mostrando testimonio ${index + 1} de ${total}`;
+        }
+
+        currentIndex = index;
+      }
+
+      function goToNext() {
+        updateSlide((currentIndex + 1) % total);
+      }
+
+      function goToPrev() {
+        updateSlide((currentIndex - 1 + total) % total);
+      }
+
+      function startAutoplay() {
+        if (autoplayTimer) clearInterval(autoplayTimer);
+        autoplayTimer = setInterval(() => {
+          if (!isPaused) goToNext();
+        }, autoplayInterval);
+      }
+
+      function stopAutoplay() {
+        if (autoplayTimer) {
+          clearInterval(autoplayTimer);
+          autoplayTimer = null;
+        }
+      }
+
+      if (prevBtn) {
+        prevBtn.addEventListener("click", () => {
+          goToPrev();
+          stopAutoplay();
+        });
+      }
+
+      if (nextBtn) {
+        nextBtn.addEventListener("click", () => {
+          goToNext();
+          stopAutoplay();
+        });
+      }
+
+      dots.forEach((dot) => {
+        dot.addEventListener("click", () => {
+          updateSlide(parseInt(dot.dataset.index, 10));
+          stopAutoplay();
+        });
+      });
+
+      carousel.addEventListener("mouseenter", () => { isPaused = true; });
+      carousel.addEventListener("mouseleave", () => { isPaused = false; });
+      carousel.addEventListener("focusin", () => { isPaused = true; });
+      carousel.addEventListener("focusout", () => { isPaused = false; });
+
+      carousel.addEventListener("touchstart", (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+      }, { passive: true });
+
+      carousel.addEventListener("touchend", (e) => {
+        touchEndX = e.changedTouches[0].screenX;
+        const diff = touchStartX - touchEndX;
+        if (Math.abs(diff) > 50) {
+          stopAutoplay();
+          diff > 0 ? goToNext() : goToPrev();
+        }
+      }, { passive: true });
+
+      carousel.addEventListener("keydown", (e) => {
+        if (e.key === "ArrowLeft") {
+          e.preventDefault();
+          goToPrev();
+          stopAutoplay();
+        } else if (e.key === "ArrowRight") {
+          e.preventDefault();
+          goToNext();
+          stopAutoplay();
+        }
+      });
+
+      updateSlide(0);
+      startAutoplay();
+
+      const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+      if (mediaQuery.matches) {
+        track.style.transition = "none";
+        stopAutoplay();
+      }
+
+      mediaQuery.addEventListener("change", (e) => {
+        if (e.matches) {
+          track.style.transition = "none";
+          stopAutoplay();
+        } else {
+          track.style.transition = "";
+          startAutoplay();
+        }
+      });
+    });
+  })();
+</script>
+
+<style>
+  .testimonial-carousel {
+    --transition-duration: 400ms;
+  }
+
+  .testimonial-carousel__track {
+    transition-duration: var(--transition-duration);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .testimonial-carousel__track {
+      transition-duration: 0ms !important;
+    }
+  }
+</style>
